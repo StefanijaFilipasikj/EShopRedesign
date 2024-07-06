@@ -20,4 +20,13 @@ public class Product {
     private String description_details;
     @Column(length = 500)
     private String washing_instructions;
+
+    public Product(String title, Double fullPrice, Double discountPrice, String description, String description_details, String washing_instructions) {
+        this.title = title;
+        this.fullPrice = fullPrice;
+        this.discountPrice = discountPrice;
+        this.description = description;
+        this.description_details = description_details;
+        this.washing_instructions = washing_instructions;
+    }
 }

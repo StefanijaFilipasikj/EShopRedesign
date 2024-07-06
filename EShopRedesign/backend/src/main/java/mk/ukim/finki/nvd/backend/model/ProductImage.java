@@ -15,4 +15,9 @@ public class ProductImage {
     @ManyToOne
     private ProductColorOption colorOption;
     private String imageUrl;
+
+    public ProductImage(ProductColorOption colorOption, String imageUrl) {
+        this.colorOption = colorOption;
+        this.imageUrl = imageUrl;
+    }
 }

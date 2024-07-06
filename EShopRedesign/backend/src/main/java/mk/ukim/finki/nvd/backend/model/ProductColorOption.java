@@ -18,4 +18,12 @@ public class ProductColorOption {
     private String color;
     private String thumbnailUrl;
     private String modelSize;
+
+    public ProductColorOption(Product product, String code, String color, String thumbnailUrl, String modelSize) {
+        this.product = product;
+        this.code = code;
+        this.color = color;
+        this.thumbnailUrl = thumbnailUrl;
+        this.modelSize = modelSize;
+    }
 }
