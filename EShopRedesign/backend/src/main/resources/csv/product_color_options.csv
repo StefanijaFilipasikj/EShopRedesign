@@ -5,10 +5,10 @@ Color Option ID,Product ID,Code,Color,Thumbnail,Model Size
 4,4,S2KF41Z8 - LRA - Ecru Printed,ECRU,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5943203/l_20221-s2kf41z8-lra_u.jpg,Chest: 82 cm Waist: 60 cm Hip: 87 cm Length: 174 cm
 5,5,S3J023Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20231/6639913/v1/l_20231-s3j023z8-cvl_u.jpg,Chest: 82 cm Waist: 59 cm Hip: 88 cm Length: 177 cm
 6,6,S4J419Z8 - GNZ - Dull Green,GREEN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7197850/v1/l_20241-s4j419z8-gnz_u.jpg,Chest: 83 cm Waist: 60 cm Hip: 89 cm Length: 173 cm
-7,6,S4J419Z8 - CVL - New Black,GREEN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7197850/v1/l_20241-s4j419z8-gnz_u.jpg,Chest: 83 cm Waist: 60 cm Hip: 89 cm Length: 173 cm
+7,6,S4J419Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7197850/v1/l_20241-s4j419z8-cvl_u.jpg,Chest: 83 cm Waist: 60 cm Hip: 89 cm Length: 173 cm
 8,7,S2IS49Z8 - FFB - Optical White,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5867960/v3/l_20221-s2is49z8-ffb_u.jpg,Chest: 82 cm Waist: 60 cm Hip: 87 cm Length: 174 cm
 9,8,S4IQ71Z8 - LQQ - Blue Printed,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7181191/v1/l_20241-s4iq71z8-lqq_u.jpg,Chest: 84 cm Waist: 62 cm Hip: 89 cm Length: 180 cm
-10,8,S4IQ71Z8 - LT9 - Pink Printed,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7181191/v1/l_20241-s4iq71z8-lqq_u.jpg,Chest: 84 cm Waist: 62 cm Hip: 89 cm Length: 180 cm
+10,8,S4IQ71Z8 - LT9 - Pink Printed,PINK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7181191/v1/l_20241-s4iq71z8-lt9_u.jpg,Chest: 84 cm Waist: 62 cm Hip: 89 cm Length: 180 cm
 11,9,S4BV08Z8 - Q6K - Buxe White,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6944941/v1/l_20241-s4bv08z8-q6k_u.jpg,Chest: 84 cm Waist: 59 cm Hip: 90 cm Length: 179 cm
 12,10,S2IU38Z8 - 311 - Light Indigo Rodeo,INDIGO,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5871196/l_20221-s2iu38z8-311_u.jpg,Chest: 82 cm Waist: 60 cm Hip: 87 cm Length: 174 cm
 13,11,S3GY13Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20231/6485686/v1/l_20231-s3gy13z8-cvl_u.jpg,Chest: 78 cm Waist: 59 cm Hip: 89 cm Length: 177 cm
@@ -16,5 +16,48 @@ Color Option ID,Product ID,Code,Color,Thumbnail,Model Size
 15,13,S3BS39Z8 - KE8 - White,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20231/6329198/v1/l_20231-s3bs39z8-ke8_u.jpg,Chest: 76 cm Waist: 64 cm Hip: 88 cm Length: 178 cm
 16,14,S48291Z8 - Q6L - Mid Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6872686/v1/l_20241-s48291z8-q6l_u.jpg,Chest: 84 cm Waist: 59 cm Hip: 91 cm Length: 175 cm
 17,15,S4MS03Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7441164/v1/l_20241-s4ms03z8-cvl_u.jpg,Chest: 78 cm Waist: 61 cm Hip: 90 cm Length: 174 cm
-18,15,S4MS03Z8 - VYF - Blue,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7441164/v1/l_20241-s4ms03z8-cvl_u.jpg,Chest: 84 cm Waist: 64 cm Hip: 90 cm Length: 176 cm
+18,15,S4MS03Z8 - VYF - Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7441164/v1/l_20241-s4ms03z8-vyf_u.jpg,Chest: 84 cm Waist: 64 cm Hip: 90 cm Length: 176 cm
 19,16,S48963Z8 - VL6 - Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6879118/v1/l_20241-s48963z8-vl6_u.jpg,Chest: 77 cm Waist: 59 cm Hip: 85 cm Length: 176 cm
+20,17,S4H400Z8 - 507 - Mid Indigo Rodeo,INDIGO,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7100757/v1/l_20241-s4h400z8-507_u.jpg,Chest: 75 cm Waist: 62 cm Hip: 89 cm Length: 178 cm
+21,18,S4HH78Z8 - GVT - Light Khaki,KHAKI,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7116298/v1/l_20241-s4hh78z8-gvt_u.jpg,Chest: 81 cm Waist: 59 cm Hip: 89 cm Length: 179 cm
+22,18,S4HH78Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7116298/v1/l_20241-s4hh78z8-cvl_u.jpg,Chest: 84 cm Waist: 58 cm Hip: 91 cm Length: 177 cm
+23,19,S4GQ42Z8 - LQJ - Black Printed,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7087132/v1/l_20241-s4gq42z8-lqj_u.jpg,Chest: 76 cm Waist: 61 cm Hip: 91 cm Length: 177 cm
+24,19,S4GQ42Z8 - LT4 - Pink Printed,PINK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7087132/v1/l_20241-s4gq42z8-lt4_u.jpg,Chest: 76 cm Waist: 61 cm Hip: 91 cm Length: 177 cm
+25,20,S4JG56Z8 - QW4 - Light Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7222495/v1/l_20241-s4jg56z8-qw4_u.jpg,Chest: 84 cm Waist: 62 cm Hip: 87 cm Length: 173 cm
+26,21,S4IT72Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7186824/v1/l_20241-s4it72z8-cvl_u.jpg,Chest: 78 cm Waist: 63 cm Hip: 85 cm Length: 173 cm
+27,22,S4HG43Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7115519/v1/l_20241-s4hg43z8-cvl_u.jpg,Chest: 81 cm Waist: 63 cm Hip: 90 cm Length: 179 cm
+28,22,S4HG43Z8 - GUY - Pale Green,GREEN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7115519/v1/l_20241-s4hg43z8-guy_u.jpg,Chest: 81 cm Waist: 63 cm Hip: 90 cm Length: 179 cm
+29,23,S47487Z8 - 844 - White Rodeo,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6863310/v1/l_20241-s47487z8-844_u.jpg,Chest: 84 cm Waist: 59 cm Hip: 90 cm Length: 179 cm
+30,24,S4BK50Z8 - CVL - New Black,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6933210/v1/l_20241-s4bk50z8-cvl_u.jpg,Chest: 84 cm Waist: 59 cm Hip: 91 cm Length: 175 cm
+31,25,S40964Z8 - CR8 - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6777660/v1/l_20241-s40964z8-cr8_u.jpg,Chest: 82 cm Waist: 64 cm Hip: 94 cm Length: 179 cm
+32,26,S4AK08Z8 - S54 - Light Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6903406/v1/l_20241-s4ak08z8-s54_u.jpg,Chest: 84 cm Waist: 59 cm Hip: 90 cm Length: 179 cm
+33,27,S47478Z8 - 327 - Black Rodeo+M,BLACK,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6863286/v1/l_20241-s47478z8-327_u.jpg,Chest: 84 cm Waist: 62 cm Hip: 87 cm Length: 173 cm
+34,28,S46965Z8 - GRD - Grey Rodeo,GREY,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6859094/v1/l_20241-s46965z8-grd_u.jpg,Chest: 77 cm Waist: 59 cm Hip: 85 cm Length: 176 cm
+35,29,S1CS98Z8 - 507 - Mid Indigo Rodeo,INDIGO,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20211/4944322/l_20211-s1cs98z8-507_a.jpg,Chest: 81 cm Waist: 60 cm Hip: 87 cm Length: 175 cm
+36,30,S40951Z8 - GRD - Grey Rodeo,GREY,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6777612/v1/l_20241-s40951z8-grd_u.jpg,Chest: 82 cm Waist: 64 cm Hip: 94 cm Length: 179 cm
+37,31,S27650Z8 - MNG - White Jacquard,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5615132/v2/l_20221-s27650z8-mng_u.jpg,Chest: 99 cm Waist: 79 cm Hip: 92 cm Length: 185 cm
+38,31,S27650Z8 - SDC - Light Mint Green,GREEN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5615132/l_20221-s27650z8-sdc_u.jpg,Chest: 99 cm Waist: 79 cm Hip: 92 cm Length: 185 cm
+39,31,S27650Z8 - J0M - Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5615132/v5/l_20221-s27650z8-j0m_u.jpg,Chest: 99 cm Waist: 79 cm Hip: 92 cm Length: 185 cm
+40,31,S27650Z8 - J5E - White,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5615132/l_20221-s27650z8-j5e_u.jpg,Chest: 99 cm Waist: 79 cm Hip: 92 cm Length: 185 cm
+41,32,S24880Z8 - LQB - Beige Printed,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5547574/l_20221-s24880z8-lqb_u.jpg,Chest: 100 cm Waist: 80 cm Hip: 89 cm Length: 188 cm
+42,33,S2GU97Z8 - G7K - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/5798955/v2/l_20221-s2gu97z8-g7k_u.jpg,Chest: 99 cm Waist: 79 cm Hip: 92 cm Length: 185 cm
+43,34,S4FP69Z8 - Q6K - Buxe White,WHITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7031400/v1/l_20241-s4fp69z8-q6k_u.jpg,Chest: 94 cm Waist: 77 cm Hip: 92 cm Length: 189 cm
+44,34,S4FP69Z8 - DWP - New Navy,NAVY,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7031400/v1/l_20241-s4fp69z8-dwp_u.jpg,Chest: 94 cm Waist: 77 cm Hip: 92 cm Length: 189 cm
+45,35,S48347Z8 - QSC - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6873039/v1/l_20241-s48347z8-qsc_u.jpg,Chest: 98 cm Waist: 76 cm Hip: 97 cm Length: 189 cm
+46,36,S2LV04Z8 - SNE - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20221/6042241/l_20221-s2lv04z8-sne_u.jpg,Chest: 98 cm Waist: 76 cm Hip: 97 cm Length: 189 cm
+47,37,S41007Z8 - V1H - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6778951/v1/l_20241-s41007z8-v1h_u.jpg,Chest: 98 cm Waist: 76 cm Hip: 98 cm Length: 188 cm
+48,37,S41007Z8 - SEH - Anthracite,ANTHRACITE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6778951/v1/l_20241-s41007z8-seh_u.jpg,Chest: 99 cm Waist: 76 cm Hip: 96 cm Length: 188 cm
+49,38,S3GT22Z8 - SLW - Light Brown,BROWN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20231/6479934/v1/l_20231-s3gt22z8-slw_u.jpg,Chest: 94 cm Waist: 77 cm Hip: 92 cm Length: 189 cm
+50,39,S47063Z8 - S5P - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6859437/v1/l_20241-s47063z8-s5p_u.jpg,Chest: 98 cm Waist: 76 cm Hip: 98 cm Length: 188 cm
+51,39,S47063Z8 - J2B - Grey,GREY,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6859437/v1/l_20241-s47063z8-j2b_u.jpg,Chest: 100 cm Waist: 81 cm Hip: 90 cm Length: 189 cm
+52,40,S48965Z8 - QRF - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6879141/v1/l_20241-s48965z8-qrf_u.jpg,Chest: 96 cm Waist: 76 cm Hip: 93 cm Length: 186 cm
+53,40,S48965Z8 - R9J - Ecru,ECRU,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6879141/v2/l_20241-s48965z8-r9j_u.jpg,Chest: 98 cm Waist: 78 cm Hip: 92 cm Length: 187 cm
+54,40,S48965Z8 - DFV - Vizon,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6879141/v1/l_20241-s48965z8-dfv_u.jpg,Chest: 98 cm Waist: 78 cm Hip: 92 cm Length: 187 cm
+55,41,S4AY81Z4 - LFT - Green Striped,GREEN,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6917593/v1/l_20241-s4ay81z4-lft_a.jpg,Chest: 0 cm Waist: 33 cm Hip: 0 cm Length: 140 cm
+56,41,S4AY81Z4 - LJE - Red Striped,RED,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6917593/v1/l_20241-s4ay81z4-lje_a.jpg,Chest: 0 cm Waist: 26 cm Hip: 0 cm Length: 133 cm
+57,42,S4I886Z4 - FMR - Light Blue,BLUE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7151771/v1/l_20241-s4i886z4-fmr_a.jpg,Chest: 0 cm Waist: 28 cm Hip: 0 cm Length: 136 cm
+58,42,S4I886Z4 - PE7 - Beige,BEIGE,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7151771/v1/l_20241-s4i886z4-pe7_a.jpg,Chest: 0 cm Waist: 30 cm Hip: 0 cm Length: 100 cm
+59,42,S4I886Z4 - GRN - Dark Lilac,LILAC,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7151771/v1/l_20241-s4i886z4-grn_a.jpg,Chest: 0 cm Waist: 30 cm Hip: 0 cm Length: 100 cm
+60,42,S4I886Z4 - G4T - Pale Coral,CORAL,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7151771/v1/l_20241-s4i886z4-g4t_a.jpg,Chest: 0 cm Waist: 30 cm Hip: 0 cm Length: 100 cm
+61,43,S4H128Z4 - F9C - Mix Printed,MIX,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/7096751/v1/l_20241-s4h128z4-f9c_a.jpg,Chest: 0 cm Waist: 33 cm Hip: 0 cm Length: 140 cm
+62,44,S4DE30Z1 - LRA - Ecru Printed,ECRU,https://img-lcwaikiki.mncdn.com/mnresize/48/64/pim/productimages/20241/6976127/v1/l_20241-s4de30z1-lra_a.jpg,Chest: 0 cm Waist: 18 cm Hip: 0 cm Length: 108 cm

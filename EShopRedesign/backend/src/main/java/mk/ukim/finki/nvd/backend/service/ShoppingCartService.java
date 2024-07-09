@@ -1,11 +1,13 @@
 package mk.ukim.finki.nvd.backend.service;
 
-import mk.ukim.finki.nvd.backend.model.Product;
-import mk.ukim.finki.nvd.backend.model.ShoppingCart;
+import mk.ukim.finki.nvd.backend.model.dto.ProductToCartDto;
+import mk.ukim.finki.nvd.backend.model.dto.ShoppingCartDto;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface ShoppingCartService {
-    List<Product> listAllProductsInShoppingCart(Long cartId);
-    ShoppingCart addProductToShoppingCart(String username, Integer productId);
+    Optional<ShoppingCartDto> getShoppingCartByUsername(String username);
+    Optional<ShoppingCartDto> addProductToShoppingCart(ProductToCartDto dto);
+    Optional<ShoppingCartDto> editProductInShoppingCart(Integer id, ProductToCartDto dto);
+    Optional<ShoppingCartDto> removeProductFromCart(Integer id);
 }

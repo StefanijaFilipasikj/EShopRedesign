@@ -1,5 +1,6 @@
 package mk.ukim.finki.nvd.backend.config;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,19 +15,29 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class WebSecurityConfig {
-    private final CustomAuthenticationProvider authenticationProvider;
+@AllArgsConstructor
+public class WebSecurityConfig{
 
-    public WebSecurityConfig(CustomAuthenticationProvider authenticationProvider) {
-        this.authenticationProvider = authenticationProvider;
-    }
+    private final CustomAuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception  {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( (requests) -> requests
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll()
+                )
+                .formLogin((form) -> form
+                        .permitAll()
+                        .failureUrl("/login?error=BadCredentials")
+                        .defaultSuccessUrl("/products", true)
+                )
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessUrl("/login")
                 );
 
         return http.build();
