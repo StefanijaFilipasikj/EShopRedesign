@@ -4,6 +4,8 @@ import Products from "../Product/ProductList";
 import ProductDetails from "../Product/ProductDetails";
 import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom'
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 class App extends Component {
     constructor(props) {
@@ -25,12 +27,14 @@ class App extends Component {
         }
         return (
             <Router>
+                <Header/>
                 <Routes>
                     <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} onDetails={this.getProduct}/>}></Route>
                     <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
                     <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
                     <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} onDetails={this.getProduct}/>}></Route>
                 </Routes>
+                <Footer/>
             </Router>
         )
     }

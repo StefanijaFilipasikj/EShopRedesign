@@ -36,7 +36,9 @@ public class DataInitializer {
 
         // Load products
         File productsFile = new File(loader.getResource("csv/products.csv").getFile());
-        Scanner productsScanner = new Scanner(productsFile, "UTF-8");
+        InputStream productsStream = loader.getResourceAsStream("csv/products.csv");
+//        Scanner productsScanner = new Scanner(productsFile, "UTF-8");
+        Scanner productsScanner = new Scanner(productsStream, "UTF-8");
         productsScanner.nextLine();
 
         while (productsScanner.hasNextLine()) {
@@ -48,7 +50,9 @@ public class DataInitializer {
 
         // Load product color options
         File colorOptionsFile = new File(loader.getResource("csv/product_color_options.csv").getFile());
-        Scanner colorOptionsScanner = new Scanner(colorOptionsFile, "UTF-8");
+        InputStream colorOptionsStream = loader.getResourceAsStream("csv/product_color_options.csv");
+//        Scanner colorOptionsScanner = new Scanner(colorOptionsFile, "UTF-8");
+        Scanner colorOptionsScanner = new Scanner(colorOptionsStream, "UTF-8");
         colorOptionsScanner.nextLine();
 
         while (colorOptionsScanner.hasNextLine()) {
@@ -61,7 +65,9 @@ public class DataInitializer {
 
         // Load product color option images
         File productImagesFile = new File(loader.getResource("csv/color_option_images.csv").getFile());
-        Scanner productImageScanner = new Scanner(productImagesFile, "UTF-8");
+        InputStream productImagesStream = loader.getResourceAsStream("csv/color_option_images.csv");
+//        Scanner productImageScanner = new Scanner(productImagesFile, "UTF-8");
+        Scanner productImageScanner = new Scanner(productImagesStream, "UTF-8");
         productImageScanner.nextLine();
 
         while (productImageScanner.hasNextLine()) {

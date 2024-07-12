@@ -1,0 +1,20 @@
+.header{
+    background-color: #F5DCE0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-items{
+    font-size: 20px;
+
+}
+
+.cart-logo{
+    width: 1.8em;
+    height: 2em;
+}
