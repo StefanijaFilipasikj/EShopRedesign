@@ -2,6 +2,9 @@ package mk.ukim.finki.nvd.backend.web;
 
 import lombok.AllArgsConstructor;
 import mk.ukim.finki.nvd.backend.model.Product;
+import mk.ukim.finki.nvd.backend.model.dto.ColorFilterDto;
+import mk.ukim.finki.nvd.backend.model.dto.CustomFilterDto;
+import mk.ukim.finki.nvd.backend.model.dto.PriceFilterDto;
 import mk.ukim.finki.nvd.backend.model.dto.ProductDto;
 import mk.ukim.finki.nvd.backend.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +53,39 @@ public class ProductRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Integer id) {
+    public ResponseEntity<Product> deleteById(@PathVariable Integer id) {
         this.productService.deleteById(id);
         if(this.productService.findById(id).isEmpty()) return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/categories/{person}")
+    private List<String> findAllCategoriesForPerson(@PathVariable String person){
+        return this.productService.findAllClothingCategoriesFor(person.toUpperCase());
+    }
+
+    @GetMapping("/filter/{person}")
+    private List<Product> filterByPersonCategory(@PathVariable String person){
+        return this.productService.filterByPerson(person.toUpperCase());
+    }
+
+    @GetMapping("/filter/{person}/{clothing}")
+    private List<Product> filterByPersonAndClothingCategory(@PathVariable String person, @PathVariable String clothing){
+        return this.productService.filterByPersonAndClothing(person.toUpperCase(), clothing.toUpperCase());
+    }
+
+    @PutMapping("/filter-price/{person}/{clothing}")
+    private List<Product> filterByPrice(@PathVariable String person, @PathVariable String clothing, @RequestBody PriceFilterDto dto) {
+        return this.productService.filterByPrice(person, clothing, dto);
+    }
+
+    @PutMapping("/filter-color/{person}/{clothing}")
+    private List<Product> filterByColor(@PathVariable String person, @PathVariable String clothing, @RequestBody ColorFilterDto dto) {
+        return this.productService.filterByColor(person, clothing, dto);
+    }
+
+    @PutMapping("/filter-custom/{person}/{clothing}")
+    private List<Product> filterByCustom(@PathVariable String person, @PathVariable String clothing, @RequestBody CustomFilterDto dto) {
+        return this.productService.filterByCustom(person, clothing, dto);
     }
 }

@@ -28,7 +28,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ProductService productService;
     private final UserService userService;
 
-    // Dto is used to escape loops
+    // Dto is used to avoid loops
     // getShoppingCartDto method is defined bellow
     @Override
     public Optional<ShoppingCartDto> getShoppingCartByUsername (String username) {
@@ -95,7 +95,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                                 productInCart.getProduct().getDescriptionDetails(),
                                 productInCart.getProduct().getWashingInstructions(),
                                 productInCart.getProduct().getClothingCategory(),
-                                productInCart.getProduct().getPersonCategory()
+                                productInCart.getProduct().getPersonCategory(),
+                                productInCart.getProduct().getDetails().getLength().name(),
+                                productInCart.getProduct().getDetails().getSleeves().name(),
+                                productInCart.getProduct().getDetails().getNeckline().name(),
+                                productInCart.getProduct().getDetails().getWaist().name(),
+                                productInCart.getProduct().getDetails().getFit().name()
                         ),
                         productInCart.getQuantity(),
                         productInCart.getSize()

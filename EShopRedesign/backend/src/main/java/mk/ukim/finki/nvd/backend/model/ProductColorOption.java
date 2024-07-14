@@ -16,11 +16,12 @@ public class ProductColorOption {
     @ManyToOne
     private Product product;
     private String code;
-    private String color;
+    @ManyToOne
+    private Color color;
     private String thumbnailUrl;
     private String modelSize;
 
-    public ProductColorOption(Product product, String code, String color, String thumbnailUrl, String modelSize) {
+    public ProductColorOption(Product product, String code, Color color, String thumbnailUrl, String modelSize) {
         this.product = product;
         this.code = code;
         this.color = color;

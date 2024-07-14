@@ -1,19 +1,28 @@
 .footer{
     background-color: #FAFAFA;
+    padding: 2em 10em 2em 20em;
 }
 
 .list{
     list-style: none;
     margin: 0;
     padding: 0;
-
 }
+
 .li{
     text-decoration: none;
-    color: gray;
+    color: grey;
 }
 
 .logo{
-    color: gray;
+    color: grey;
     font-weight: bolder;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+a:hover, a>h1:hover{
+    color: #E18AAA;
 }

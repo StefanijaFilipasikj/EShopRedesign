@@ -8,6 +8,7 @@ import mk.ukim.finki.nvd.backend.model.enumerations.ClothingCategory;
 import mk.ukim.finki.nvd.backend.model.enumerations.PersonCategory;
 import mk.ukim.finki.nvd.backend.model.enumerations.Role;
 import mk.ukim.finki.nvd.backend.model.enumerations.Size;
+import mk.ukim.finki.nvd.backend.model.enumerations.details.*;
 import mk.ukim.finki.nvd.backend.repository.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,7 @@ public class DataInitializer {
     private final UserRepository userRepository;
     private final ShoppingCartRepository shoppingCartRepository;
     private final ProductInShoppingCartRepository productInShoppingCartRepository;
+    private final ColorRepository colorRepository;
     private final PasswordEncoder passwordEncoder;
     private final JdbcTemplate jdbcTemplate;
 
@@ -44,8 +46,22 @@ public class DataInitializer {
         while (productsScanner.hasNextLine()) {
             String line = productsScanner.nextLine();
             String[] parts = line.split(",");
-            Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[4], parts[5], parts[6], ClothingCategory.valueOf(parts[7]), PersonCategory.valueOf(parts[8]));
+            Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[4], parts[5], parts[6], ClothingCategory.valueOf(parts[7]), PersonCategory.valueOf(parts[8]), Length.valueOf(parts[9]), Sleeves.valueOf(parts[10]), Neckline.valueOf(parts[11]), Waist.valueOf(parts[12]), Fit.valueOf(parts[13]));
             this.productRepository.save(p);
+        }
+
+        // Load colors
+        File colorsFile = new File(loader.getResource("csv/colors.csv").getFile());
+        InputStream colorsStream = loader.getResourceAsStream("csv/colors.csv");
+//        Scanner colorsScanner = new Scanner(productsFile, "UTF-8");
+        Scanner colorsScanner = new Scanner(colorsStream, "UTF-8");
+        colorsScanner.nextLine();
+
+        while (colorsScanner.hasNextLine()) {
+            String line = colorsScanner.nextLine();
+            String[] parts = line.split(",");
+            Color c = new Color(parts[0], parts[1]);
+            this.colorRepository.save(c);
         }
 
         // Load product color options
@@ -59,7 +75,8 @@ public class DataInitializer {
             String line = colorOptionsScanner.nextLine();
             String[] parts = line.split(",");
             Product p = this.productRepository.findById(Integer.parseInt(parts[1])).get();
-            ProductColorOption pco = new ProductColorOption(Integer.parseInt(parts[0]), p, parts[2], parts[3], parts[4], parts[5]);
+            Color color = colorRepository.findByColor(parts[3]);
+            ProductColorOption pco = new ProductColorOption(Integer.parseInt(parts[0]), p, parts[2], color, parts[4], parts[5]);
             this.colorOptionRepository.save(pco);
         }
 

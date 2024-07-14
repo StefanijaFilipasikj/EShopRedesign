@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ProductColorOptionDto {
     private Integer productId;
     private String code;
-    private String color;
+    private Integer colorId;
     private String thumbnailUrl;
     private String modelSize;
 }

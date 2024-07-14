@@ -19,4 +19,9 @@ public class ProductDto {
     private String washingInstructions;
     private ClothingCategory clothingCategory;
     private PersonCategory personCategory;
+    private String length;
+    private String sleeves;
+    private String neckline;
+    private String waist;
+    private String fit;
 }

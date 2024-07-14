@@ -10,6 +10,9 @@ const EShopService = {
     getAllProductImages: () => {
         return axios.get("/product-images");
     },
+    getAllColors: () => {
+        return axios.get("/colors");
+    },
     getProduct: (id) => {
         return axios.get(`/products/${id}`);
     },
@@ -34,6 +37,35 @@ const EShopService = {
     },
     removeProductFromShoppingCart: (id) => {
         return axios.delete(`/shopping-cart/remove-product/${id}`);
-    }
+    },
+    getAllCategoriesForPerson: (person) => {
+        return axios.get(`/products/categories/${person}`)
+    },
+    filterProductsByPersonCategory: (person) => {
+        return axios.get(`/products/filter/${person}`)
+    },
+    filterProductsByPersonAndClothingCategory: (person, clothing) => {
+        return axios.get(`/products/filter/${person}/${clothing}`)
+    },
+    filterProductsByPrice: (person, clothing, min, max) => {
+        return axios.put(`/products/filter-price/${person}/${clothing}`, {
+            "min": min,
+            "max": max
+        });
+    },
+    filterProductsByColor: (person, clothing, colors) => {
+        return axios.put(`/products/filter-color/${person}/${clothing}`, {
+            "colors": colors
+        });
+    },
+    filterProductsByCustom: (person, clothing, length, sleeves, neckline, waist, fit) => {
+        return axios.put(`/products/filter-custom/${person}/${clothing}`, {
+            "length": length,
+            "sleeves": sleeves,
+            "neckline": neckline,
+            "waist": waist,
+            "fit": fit,
+        });
+    },
 }
 export default EShopService;

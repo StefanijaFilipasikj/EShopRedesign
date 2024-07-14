@@ -7,6 +7,13 @@ import {Link} from "react-router-dom";
 const username = 'user';
 
 const Header = (props) =>{
+
+    const onFormSubmit = (e, person, clothing) => {
+        e.preventDefault();
+        console.log(person, clothing)
+        props.onFilter(person, clothing);
+    }
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light p-2 header">
@@ -19,48 +26,74 @@ const Header = (props) =>{
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-black">
-                            <li className="nav-item dropdown nav-items">
-                                <a className="nav-link dropdown-toggle p-3" href="#" id="navbarDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    WOMEN
-                                </a>
+                            <li className="nav-item dropdown nav-items d-flex">
+                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'WOMEN', '/')}>
+                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>WOMEN</button>
+                                </form>
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr className="dropdown-divider"/>
-                                    </li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    {props.women.map((c) => {
+                                        return(
+                                            <li className="dropdown-item">
+                                                <form onSubmit={(event) => onFormSubmit(event, 'WOMEN', c)}>
+                                                    <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
+                                                </form>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown nav-items">
-                                <a className="nav-link dropdown-toggle p-3" href="#" id="navbarDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    MEN
-                                </a>
+                            <li className="nav-item dropdown nav-items d-flex">
+                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'MEN', '/')}>
+                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>MEN</button>
+                                </form>
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr className="dropdown-divider"/>
-                                    </li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    {props.men.map((c) => {
+                                        return(
+                                            <li className="dropdown-item">
+                                                <form onSubmit={(event) => onFormSubmit(event, 'MEN', c)}>
+                                                    <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
+                                                </form>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown nav-items">
-                                <a className="nav-link dropdown-toggle p-3" href="#" id="navbarDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    KIDS
-                                </a>
+                            <li className="nav-item dropdown nav-items d-flex">
+                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'GIRLS', '/')}>
+                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>GIRLS</button>
+                                </form>
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr className="dropdown-divider"/>
-                                    </li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    {props.girls.map((c) => {
+                                        return(
+                                            <li className="dropdown-item">
+                                                <form onSubmit={(event) => onFormSubmit(event, 'GIRLS', c)}>
+                                                    <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
+                                                </form>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </li>
+                            {/*<li className="nav-item dropdown nav-items d-flex">*/}
+                            {/*    <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'BOYS', '/')}>*/}
+                            {/*        <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>BOYS</button>*/}
+                            {/*    </form>*/}
+                            {/*    <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>*/}
+                            {/*    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">*/}
+                            {/*        {props.boys.map((c) => {*/}
+                            {/*            return(*/}
+                            {/*                <li className="dropdown-item">*/}
+                            {/*                    <form onSubmit={(event) => onFormSubmit(event, 'BOYS', c)}>*/}
+                            {/*                        <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>*/}
+                            {/*                    </form>*/}
+                            {/*                </li>*/}
+                            {/*            )*/}
+                            {/*        })}*/}
+                            {/*    </ul>*/}
+                            {/*</li>*/}
 
                         </ul>
                         <form className="d-flex p-3">

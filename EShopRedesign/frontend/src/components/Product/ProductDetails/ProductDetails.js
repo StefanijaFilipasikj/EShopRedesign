@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ProductDetails.css'
-import tshirt from '../../images/tshirt.png'
-import washing_machine from '../../images/washing-machine.png'
+import tshirt from '../../../images/tshirt.png'
+import washing_machine from '../../../images/washing-machine.png'
 
 const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart }) => {
     const navigate = useNavigate();
