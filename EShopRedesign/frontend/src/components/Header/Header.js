@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useLayoutEffect} from "react";
 import './Header.css';
 import cart from '../../images/cart-icon.png'
 import {Link} from "react-router-dom";
@@ -14,8 +14,16 @@ const Header = (props) =>{
         props.onFilter(person, clothing);
     }
 
+    useLayoutEffect(() => {
+        const header = document.querySelector('header');
+        if (header) {
+            const headerHeight = header.offsetHeight;
+            document.body.style.paddingTop = `${headerHeight}px`;
+        }
+    }, []);
+
     return (
-        <header>
+        <header className={"fixed-top"}>
             <nav className="navbar navbar-expand-lg navbar-light p-2 header">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/"><span className={"text-black title"}><b>LC WAIKIKI</b></span></a>
@@ -98,7 +106,7 @@ const Header = (props) =>{
                         </ul>
                         <form className="d-flex p-3">
                             <input className="form-control" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-light" type="submit">Search</button>
+                            <button className="btn btn-light" type="submit">Search</button>
                         </form>
                         <div className={"d-flex"}>
                             <Link to={`/shopping-cart/${username}`}><img className={"cart-logo"} src={cart} alt={"Cart logo"}/></Link>
