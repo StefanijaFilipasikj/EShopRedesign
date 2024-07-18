@@ -2,15 +2,15 @@ package mk.ukim.finki.nvd.backend.service.impl;
 
 import lombok.AllArgsConstructor;
 import mk.ukim.finki.nvd.backend.model.Product;
+import mk.ukim.finki.nvd.backend.model.ProductColorOption;
 import mk.ukim.finki.nvd.backend.model.ProductInShoppingCart;
 import mk.ukim.finki.nvd.backend.model.ShoppingCart;
-import mk.ukim.finki.nvd.backend.model.dto.ProductToCartDto;
-import mk.ukim.finki.nvd.backend.model.dto.ProductDto;
-import mk.ukim.finki.nvd.backend.model.dto.ProductInShoppingCartDto;
-import mk.ukim.finki.nvd.backend.model.dto.ShoppingCartDto;
+import mk.ukim.finki.nvd.backend.model.dto.*;
+import mk.ukim.finki.nvd.backend.model.exceptions.ProductColorOptionNotFoundException;
 import mk.ukim.finki.nvd.backend.model.exceptions.ProductInShoppingCartNotFoundException;
 import mk.ukim.finki.nvd.backend.model.exceptions.ProductNotFoundException;
 import mk.ukim.finki.nvd.backend.repository.ProductInShoppingCartRepository;
+import mk.ukim.finki.nvd.backend.service.ProductColorOptionService;
 import mk.ukim.finki.nvd.backend.service.ProductService;
 import mk.ukim.finki.nvd.backend.service.ShoppingCartService;
 import mk.ukim.finki.nvd.backend.service.UserService;
@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private final ProductInShoppingCartRepository productInShoppingCartRepository;
+    private final ProductColorOptionService productColorOptionService;
     private final ProductService productService;
     private final UserService userService;
 
@@ -40,13 +41,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = userService.findByUsername(dto.getUsername()).getShoppingCart();
         Product product = productService.findById(dto.getProductId()).orElseThrow(() -> new ProductNotFoundException(dto.getProductId()));
         List<ProductInShoppingCart> withSameProduct = shoppingCart.getProducts().stream().filter(p -> p.getProduct().getId().equals(dto.getProductId())).toList();
+        ProductColorOption productColorOption = productColorOptionService.findById(dto.getColorOptionId()).orElseThrow(() -> new ProductColorOptionNotFoundException(dto.getColorOptionId()));
 
         if(withSameProduct.isEmpty()){
-            productInShoppingCartRepository.save(new ProductInShoppingCart(product, shoppingCart, dto.getQuantity(), dto.getSize()));
+            productInShoppingCartRepository.save(new ProductInShoppingCart(product, productColorOption, shoppingCart, dto.getQuantity(), dto.getSize()));
         }else{
             List<ProductInShoppingCart> withSameSize = withSameProduct.stream().filter(p -> p.getSize().equals(dto.getSize())).toList();
             if(withSameSize.isEmpty()){
-                productInShoppingCartRepository.save(new ProductInShoppingCart(product, shoppingCart, dto.getQuantity(), dto.getSize()));
+                productInShoppingCartRepository.save(new ProductInShoppingCart(product, productColorOption, shoppingCart, dto.getQuantity(), dto.getSize()));
             }else{
                 ProductInShoppingCart productInCart = withSameSize.get(0);
                 productInCart.setQuantity(productInCart.getQuantity() + dto.getQuantity());
@@ -101,6 +103,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                                 productInCart.getProduct().getDetails().getNeckline().name(),
                                 productInCart.getProduct().getDetails().getWaist().name(),
                                 productInCart.getProduct().getDetails().getFit().name()
+                        ),
+                        new ProductColorOptionDto(
+                                productInCart.getColorOption().getProduct().getId(),
+                                productInCart.getColorOption().getCode(),
+                                productInCart.getColorOption().getColor().getId(),
+                                productInCart.getColorOption().getThumbnailUrl(),
+                                productInCart.getColorOption().getModelSize()
                         ),
                         productInCart.getQuantity(),
                         productInCart.getSize()

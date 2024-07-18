@@ -11,6 +11,7 @@ import mk.ukim.finki.nvd.backend.model.enumerations.Size;
 public class ProductInShoppingCartDto {
     private Integer id;
     private ProductDto product;
+    private ProductColorOptionDto colorOption;
     private Integer quantity;
     private Size size;
 }

@@ -17,13 +17,17 @@ public class ProductInShoppingCart {
     @ManyToOne
     private Product product;
     @ManyToOne
+    private ProductColorOption colorOption;
+    @ManyToOne
     private ShoppingCart shoppingCart;
     private Integer quantity;
     @Enumerated(EnumType.STRING)
     private Size size;
 
-    public ProductInShoppingCart(Product product, ShoppingCart shoppingCart, Integer quantity, Size size) {
+
+    public ProductInShoppingCart(Product product, ProductColorOption colorOption, ShoppingCart shoppingCart, Integer quantity, Size size) {
         this.product = product;
+        this.colorOption = colorOption;
         this.shoppingCart = shoppingCart;
         this.quantity = quantity;
         this.size = size;

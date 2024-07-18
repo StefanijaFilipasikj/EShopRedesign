@@ -38,7 +38,7 @@ class App extends Component {
                 <Routes>
                     <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
                     <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
-                    <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
+                    <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
                     <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
                 </Routes>
                 <Footer/>
@@ -50,7 +50,7 @@ class App extends Component {
             .then((data) => {
                 this.setState({
                     products: data.data
-                })
+                });
             })
             .catch((error) => {
                 console.log(error)
@@ -62,7 +62,7 @@ class App extends Component {
             .then((data) => {
                 this.setState({
                     productColorOptions: data.data
-                })
+                });
             })
             .catch((error) => {
                 console.log(error)
@@ -74,7 +74,7 @@ class App extends Component {
             .then((data) => {
                 this.setState({
                     productImages: data.data
-                })
+                });
             })
             .catch((error) => {
                 console.log(error)
@@ -101,7 +101,7 @@ class App extends Component {
                         selectedProduct: data.data,
                         selectedProductColorOptions: this.state.productColorOptions.filter(option => option.product.id == id),
                         selectedProductImages: this.state.productImages.filter(img => this.state.selectedProductColorOptions.some(option => option.id == img.colorOption.id))
-                    })
+                    });
                 })
                 .catch((error) => {
                     console.log(error)
@@ -123,10 +123,10 @@ class App extends Component {
             });
     }
 
-    addToCart = (productId, quantity, size, navigate) => {
+    addToCart = (productId, colorOptionId, quantity, size, navigate) => {
         // default for now
         let username = "user";
-        EShopService.addProductToShoppingCart(username, productId, quantity, size)
+        EShopService.addProductToShoppingCart(username, productId, colorOptionId, quantity, size)
             .then((data) => {
                 this.loadData();
                 navigate(`/shopping-cart/${username}`);

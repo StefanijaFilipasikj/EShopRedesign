@@ -19,10 +19,11 @@ const EShopService = {
     getShoppingCart: (username) => {
         return axios.get(`/shopping-cart/${username}`)
     },
-    addProductToShoppingCart: (username, productId, quantity, size) => {
+    addProductToShoppingCart: (username, productId, colorOptionId, quantity, size) => {
         return axios.post("/shopping-cart/add-product", {
             "username": username,
             "productId": productId,
+            "colorOptionId" : colorOptionId,
             "quantity": quantity,
             "size": size
         });

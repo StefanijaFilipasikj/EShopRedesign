@@ -101,7 +101,8 @@ public class DataInitializer {
 
         // Add a product to a shopping cart
         Product p = this.productRepository.findById(1).get();
-        productInShoppingCartRepository.save(new ProductInShoppingCart(p, sc, 10, Size.M));
+        ProductColorOption colorOption = colorOptionRepository.findById(1).get();
+        productInShoppingCartRepository.save(new ProductInShoppingCart(p, colorOption, sc, 10, Size.M));
 
         // Adjust database tables sequence counters
         adjustAutoIncrement("product_id_seq", "product");

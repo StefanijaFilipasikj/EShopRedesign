@@ -1,0 +1,38 @@
+.cards{
+    background-color: #FFFAFB;
+}
+
+.cart-img{
+    width: 100%;
+}
+
+.button-img{
+    width: 2em;
+}
+
+.button-del-img{
+    width: 1.7em;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+}
+
+.code{
+    color: #ECBDC4;
+}
+
+.button-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.button-container button {
+    flex: none;
+}
+
+.order-summary{
+    background-color: #EFCFD4;
+    height: max-content;
+}
