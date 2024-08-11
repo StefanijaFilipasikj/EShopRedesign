@@ -24,21 +24,20 @@ const Header = (props) =>{
 
     return (
         <header className={"fixed-top"}>
-            <nav className="navbar navbar-expand-lg navbar-light p-2 header">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="/"><span className={"text-black title"}><b>LC WAIKIKI</b></span></a>
+            <nav className="navbar navbar-expand header">
+                <div className="container-fluid mx-5">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-black">
+                        <ul className="col-4 navbar-nav me-auto mb-2 mb-lg-0 text-white">
                             <li className="nav-item dropdown nav-items d-flex">
                                 <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'WOMEN', '/')}>
-                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>WOMEN</button>
+                                    <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>WOMEN</button>
                                 </form>
-                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {props.women.map((c) => {
                                         return(
@@ -53,10 +52,10 @@ const Header = (props) =>{
                             </li>
                             <li className="nav-item dropdown nav-items d-flex">
                                 <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'MEN', '/')}>
-                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>MEN</button>
+                                    <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>MEN</button>
                                 </form>
-                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                <ul className="dropdown-menu text-white" aria-labelledby="navbarDropdown">
                                     {props.men.map((c) => {
                                         return(
                                             <li className="dropdown-item">
@@ -70,9 +69,9 @@ const Header = (props) =>{
                             </li>
                             <li className="nav-item dropdown nav-items d-flex">
                                 <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'GIRLS', '/')}>
-                                    <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>GIRLS</button>
+                                    <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>GIRLS</button>
                                 </form>
-                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {props.girls.map((c) => {
                                         return(
@@ -104,13 +103,14 @@ const Header = (props) =>{
                             {/*</li>*/}
 
                         </ul>
-                        <form className="d-flex p-3">
-                            <input className="form-control" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn btn-light" type="submit">Search</button>
+                        <a className="col-4 text-center navbar-brand" href="/"><span className={"text-white title"}>LC WAIKIKI</span></a>
+                        <form className="d-flex p-3 mx-3 w-100 justify-content-end">
+                            <input className="form-control w-75 rounded-0" type="search" placeholder="Search" aria-label="Search"/>
+                            <button className="btn-search bg-transparent" type="submit"><span className={"fa fa-search"}></span></button>
                         </form>
                         <div className={"d-flex"}>
-                            <Link to={`/shopping-cart/${username}`}><img className={"cart-logo"} src={cart} alt={"Cart logo"}/></Link>
-                            <a className={"nav-link active px-3"} href={"#"}>LOGIN</a>
+                            <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${username}`}><span className={"fa fa-shopping-cart"}></span></a>
+                            <a className={"nav-link ps-3 fs-4 text-white"} href={"/login"}><span className={"fa fa-user"}></span></a>
                         </div>
                     </div>
                 </div>

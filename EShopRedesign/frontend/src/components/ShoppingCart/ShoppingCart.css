@@ -1,9 +1,13 @@
 .cards{
-    background-color: #FFFAFB;
+    box-shadow: 0 2px 4px rgba(100, 100, 100, 0.1);
 }
 
-.cart-img{
-    width: 100%;
+.cards:hover{
+    border: 1px solid #e6e6e6;
+}
+
+.cart-img {
+    width: 23em;
 }
 
 .button-img{
@@ -20,7 +24,7 @@ button{
 }
 
 .code{
-    color: #ECBDC4;
+    color: #875757;
 }
 
 .button-container {
@@ -33,6 +37,18 @@ button{
 }
 
 .order-summary{
-    background-color: #EFCFD4;
+    background-color: #f6edf0;
     height: max-content;
+    position: fixed;
+    right: 1em;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+.btn-close-absolute{
+    position: absolute;
+    right: 9px;
+    top: 2px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #875757;
 }

@@ -34,14 +34,16 @@ class App extends Component {
         }
         return (
             <Router>
-                <Header women={this.state.categoriesWomen} men={this.state.categoriesMen} girls={this.state.categoriesGirls} boys={this.state.categoriesBoys} onFilter={this.filterProductsByPersonAndClothingCategory}/>
-                <Routes>
-                    <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
-                    <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
-                    <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
-                    <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
-                </Routes>
-                <Footer/>
+                <div className={"min-vh-100 d-flex flex-column justify-content-between"}>
+                    <Header women={this.state.categoriesWomen} men={this.state.categoriesMen} girls={this.state.categoriesGirls} boys={this.state.categoriesBoys} onFilter={this.filterProductsByPersonAndClothingCategory}/>
+                    <Routes>
+                        <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
+                        <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
+                        <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
+                        <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
+                    </Routes>
+                    <Footer/>
+                </div>
             </Router>
         )
     }

@@ -79,7 +79,7 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
 
 
     return (
-        <div className={"row m-3"}>
+        <div className={"row m-4"}>
             <div className="col-lg-7">
                 <div className="row img-container">
                     {images &&
@@ -95,11 +95,11 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                 </div>
             </div>
             <div className={"col"}>
-                <div className={"row m-2 align-items-center"}>
-                    <div className={"col"}>
-                        <h5><b>{product.title}</b></h5>
+                <div className={"d-flex justify-content-between px-4"}>
+                    <div className={"me-5"}>
+                        <h5><b className={"fs-4"}>{product.title}</b></h5>
                     </div>
-                    <div className={"col text-center"}>
+                    <div className={"ms-5 text-center"}>
                         {product.discountPrice !== 0.0 ? (
                             <>
                                 <p className={"full-price m-1"}>{product.fullPrice}€</p>
@@ -151,7 +151,7 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                     <div className={"m-3"}>
                         <div className="details" onClick={() => toggleExpand('product_details')}>
                             <h5>
-                                <img className={"details-logo m-2"} src={tshirt} alt={"Tshirt img"}/>
+                                <img className={"details-logo m-2"} src={tshirt} alt={"details"}/>
                                 Product Details
                             </h5>
                             <div className={`content ${expandedSections.product_details ? 'expanded' : ''}`}>
@@ -164,10 +164,10 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                     <div className={"m-3"}>
                         <div className="details" onClick={() => toggleExpand('washing_instructions')}>
                             <h5>
-                                <img className={"details-logo m-2"} src={washing_machine} alt={"Washing machine img"}/>
+                                <img className={"details-logo m-2"} src={washing_machine} alt={"instructions"}/>
                                 Washing Instructions
                             </h5>
-                            <div className={`expandable-content ${expandedSections.washing_instructions ? 'expanded' : ''}`}>
+                            <div className={`content ${expandedSections.washing_instructions ? 'expanded' : ''}`}>
                                 {formatWashingInstructions(product.washingInstructions)}
                             </div>
                         </div>

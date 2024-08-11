@@ -15,14 +15,16 @@
 }
 
 .price{
-    color: #164863;
+    color: #875757;
     font-weight: bold;
     font-size: x-large;
 }
 
 .full-price{
-    color: red;
+    color: #aca3a3;
     text-decoration: line-through;
+    font-weight: bold;
+    font-size: large;
 }
 
 .btn{
@@ -48,11 +50,11 @@
 }
 
 .content.expanded {
-    height: 33em;
+    height: 100%;
     padding: 10px;
     margin-top: 10px;
     max-height: none;
-    background-color: #FBF6F6;
+    background-color: #ffffff;
     border-top: 1px solid #CCC;
 }
 
