@@ -1,6 +1,29 @@
 import axios from "../custom-axios/axios";
 
 const EShopService = {
+    login: (username, password) => {
+        return axios.post("/login", {
+            "username": username,
+            "password": password
+        })
+    },
+    register: (username, password, repeatPassword, role) => {
+        return axios.post("/user/register", {
+            "username": username,
+            "password": password,
+            "repeatPassword": repeatPassword,
+            "role": role
+        })
+    },
+    getUserRole: () => {
+        return axios.get("/user/role")
+    },
+    getUserUsername: () => {
+        return axios.get("/user/username")
+    },
+    getAllRoles: () => {
+        return axios.get("/user/roles")
+    },
     getAllProducts: () => {
         return axios.get("/products");
     },

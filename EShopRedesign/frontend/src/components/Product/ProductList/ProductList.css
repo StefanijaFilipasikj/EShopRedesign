@@ -95,3 +95,9 @@
     z-index: 1 !important;
     padding-top: 10px;
 }
+
+.price{
+    color: #b05369;
+    font-weight: bold;
+    font-size: x-large;
+}

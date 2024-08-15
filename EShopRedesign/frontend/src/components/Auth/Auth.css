@@ -1,0 +1,62 @@
+.auth{
+    background: url("../../images/auth_bg.jpg");
+    background-size: cover;
+}
+
+.login-form {
+    background-color: rgba(175, 109, 109, 0.1);
+    box-shadow: 0 4px 8px rgba(175, 109, 109, 0.3);
+    border: 4px solid white;
+    position: relative;
+}
+
+.login-form::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, white, rgba(232, 199, 199, 0.3), white);
+    z-index: 1;
+}
+
+.cat-container{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#space{
+    height: 250px !important;
+}
+
+.password-eye{
+    position: absolute;
+    right: 0;
+    top: 55%;
+    transform: translateX(-55%);
+    cursor: pointer;
+}
+
+.alert-danger{
+    border: 1px solid rgba(135, 87, 87, 0.3) !important;
+    background-color: rgba(135, 87, 87, 0.1) !important;
+}
+
+.auth-title{
+    position: relative;
+    text-align: center;
+    font-size: 3em;
+    margin-top: -1.68em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    z-index: 2 !important;
+    /*color: white;*/
+    /*text-shadow: 2px 2px rgba(255, 255, 255, 0.5);*/
+}
+
+.auth .form-control{
+    border-radius: 0;
+}

@@ -1,0 +1,140 @@
+import {useEffect, useState} from "react";
+import EShopService from "../../../repository/EShopRepository";
+import '../Auth.css';
+import '../Auth.scss';
+import {useNavigate} from "react-router-dom";
+
+const Register = (props) => {
+
+    const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({username: "", password: "", repeatPassword: "", role: null})
+    const [error, setError] = useState(null);
+    const [roles, setRoles] = useState(null);
+
+    useEffect(() => {
+        EShopService.getUserRole().then(resp => {
+            setRoles(resp.data)
+        })
+    }, []);
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+        EShopService.register(formData.username, formData.password, formData.repeatPassword, formData.role).then(resp => {
+            setError(null);
+            navigate("/login");
+        }).catch(error => {
+            setError(error.response.data)
+            console.log(error)
+        });
+    };
+
+
+    const [isBlinking, setIsBlinking] = useState(false);
+    const handlePasswordFocus = () => {
+        setIsBlinking(true);
+    };
+    const handlePasswordBlur = () => {
+        setIsBlinking(false);
+    };
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    const toggleRepeatPasswordVisibility = () => {
+        setShowRepeatPassword(!showRepeatPassword);
+    };
+
+    return (
+        <div className="auth row justify-content-center pt-5 mb-0 min-vh-100">
+            <div className="col-3 position-relative mt-5">
+                <form onSubmit={onFormSubmit} className="login-form p-5">
+                    <h2 className={"auth-title"}>Register</h2>
+                    <div className={`cat-container my-5 ${isBlinking ? 'blinking' : ''}`}>
+                        <div className="cat">
+                            <div className="ear ear--left"></div>
+                            <div className="ear ear--right"></div>
+                            <div className="face">
+                                <div className="eye eye--left">
+                                    <div className="eye-pupil"></div>
+                                </div>
+                                <div className="eye eye--right">
+                                    <div className="eye-pupil"></div>
+                                </div>
+                                <div className="muzzle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id={"space"}></div>
+
+                    {error && <div className={"alert alert-danger"} role="alert">{error}</div>}
+
+                    <div className="form-group mb-4">
+                        <label htmlFor="name" className="text-white">Username</label>
+                        <input type="text"
+                               className="form-control form-control-dark"
+                               name="username"
+                               required
+                               placeholder="Enter username"
+                               onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group mb-4 position-relative">
+                        <label htmlFor="password" className="text-white">Password</label>
+                        <input type={showPassword ? "text" : "password"}
+                               className="form-control form-control-dark"
+                               name="password"
+                               placeholder="Enter password"
+                               required
+                               onChange={handleChange}
+                               onFocus={handlePasswordFocus}
+                               onBlur={handlePasswordBlur}
+                        />
+                        <span className={`password-eye fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`} id="togglePassword" onClick={togglePasswordVisibility}></span>
+                    </div>
+                    <div className="form-group mb-4 position-relative">
+                        <label htmlFor="password" className="text-white">Repeat Password</label>
+                        <input type={showRepeatPassword ? "text" : "password"}
+                               className="form-control form-control-dark"
+                               name="repeatPassword"
+                               placeholder="Repeat password"
+                               required
+                               onChange={handleChange}
+                               onFocus={handlePasswordFocus}
+                               onBlur={handlePasswordBlur}
+                        />
+                        <span className={`password-eye fa ${showRepeatPassword ? "fa-eye-slash" : "fa-eye"}`} id="toggleRepeatPassword" onClick={toggleRepeatPasswordVisibility}></span>
+                    </div>
+
+                    {roles == "ROLE_ADMIN" &&
+                        <div className="form-group">
+                            <label htmlFor="price">Role</label>
+                            <select name="role" required onChange={handleChange} className="form-control">
+                                {props.roles.map((role, i) => <option key={i}>{role}</option>)}
+                            </select>
+                        </div>
+                    }
+
+                    <button id="submit" type="submit" className="btn btn-dark w-100 my-4">Submit</button>
+                </form>
+
+                <div className={"mt-4 pb-5"}>
+                    Already have an account?
+                    <a href={"login"} className="btn btn-dark w-100 mb-5">Login Here</a>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Register;

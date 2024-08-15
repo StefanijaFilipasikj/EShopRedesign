@@ -52,3 +52,7 @@ button{
     font-weight: bold;
     color: #875757;
 }
+
+.cards .form-label{
+    width: 80px !important;
+}

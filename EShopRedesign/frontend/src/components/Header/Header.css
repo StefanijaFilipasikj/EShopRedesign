@@ -36,3 +36,7 @@ li:has(.btn-unstyled:focus),
 .btn-search{
     margin-left: -32px;
 }
+
+#username{
+    max-width: 130px;
+}

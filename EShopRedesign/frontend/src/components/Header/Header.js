@@ -1,12 +1,22 @@
-import React, {useLayoutEffect} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import './Header.css';
-import cart from '../../images/cart-icon.png'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import EShopService from "../../repository/EShopRepository";
 
 //hard coded for now
 const username = 'user';
 
 const Header = (props) =>{
+
+    const navigate = useNavigate();
+
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        EShopService.getUserUsername().then(resp => {
+            setUsername(resp.data)
+        })
+    }, []);
 
     const onFormSubmit = (e, person, clothing) => {
         e.preventDefault();
@@ -21,6 +31,19 @@ const Header = (props) =>{
             document.body.style.paddingTop = `${headerHeight}px`;
         }
     }, []);
+
+    let authenticate;
+    if(localStorage.getItem("JWT")){
+        authenticate = (
+            <>
+                <span id={"username"} className={"nav-link fs-6 text-white align-self-center text-truncate"}>{username}</span>
+                <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${username}`}><span className={"fa fa-shopping-cart"}></span></a>
+                <button className="nav-link ps-3 fs-4 text-white" onClick={() => {localStorage.removeItem("JWT"); navigate("/login");}}><span className={"fa fa-user-times"}></span></button>
+            </>
+            )
+    } else {
+        authenticate = (<Link className="nav-link ps-3 fs-4 text-white" to={"/login"}><span className={"fa fa-user"}></span></Link>)
+    }
 
     return (
         <header className={"fixed-top"}>
@@ -41,7 +64,7 @@ const Header = (props) =>{
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {props.women.map((c) => {
                                         return(
-                                            <li className="dropdown-item">
+                                            <li className="dropdown-item" key={c}>
                                                 <form onSubmit={(event) => onFormSubmit(event, 'WOMEN', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
@@ -58,7 +81,7 @@ const Header = (props) =>{
                                 <ul className="dropdown-menu text-white" aria-labelledby="navbarDropdown">
                                     {props.men.map((c) => {
                                         return(
-                                            <li className="dropdown-item">
+                                            <li className="dropdown-item" key={c}>
                                                 <form onSubmit={(event) => onFormSubmit(event, 'MEN', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
@@ -75,7 +98,7 @@ const Header = (props) =>{
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {props.girls.map((c) => {
                                         return(
-                                            <li className="dropdown-item">
+                                            <li className="dropdown-item" key={c}>
                                                 <form onSubmit={(event) => onFormSubmit(event, 'GIRLS', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
@@ -92,7 +115,7 @@ const Header = (props) =>{
                             {/*    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">*/}
                             {/*        {props.boys.map((c) => {*/}
                             {/*            return(*/}
-                            {/*                <li className="dropdown-item">*/}
+                            {/*                <li className="dropdown-item" key={c}>*/}
                             {/*                    <form onSubmit={(event) => onFormSubmit(event, 'BOYS', c)}>*/}
                             {/*                        <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>*/}
                             {/*                    </form>*/}
@@ -109,8 +132,7 @@ const Header = (props) =>{
                             <button className="btn-search bg-transparent" type="submit"><span className={"fa fa-search"}></span></button>
                         </form>
                         <div className={"d-flex"}>
-                            <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${username}`}><span className={"fa fa-shopping-cart"}></span></a>
-                            <a className={"nav-link ps-3 fs-4 text-white"} href={"/login"}><span className={"fa fa-user"}></span></a>
+                            {authenticate}
                         </div>
                     </div>
                 </div>

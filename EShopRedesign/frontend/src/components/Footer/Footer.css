@@ -1,5 +1,5 @@
 .footer{
-    background-color: #FAFAFA;
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 2em 10em 2em 20em;
 }
 
@@ -11,7 +11,7 @@
 
 .li{
     text-decoration: none;
-    color: grey;
+    color: #9d9898;
 }
 
 .logo{
@@ -24,5 +24,9 @@ a{
 }
 
 a:hover, a>h1:hover{
-    color: #E18AAA;
+    color: rgb(183, 131, 145);
+}
+
+footer h5{
+    color: #d5c8c8 !important;
 }

@@ -80,7 +80,7 @@ const Products = (props) => {
     return (
         <div className={"row card-container m-2"}>
             <div className={"d-flex justify-content-between fixed-custom pe-4"}>
-                <div className={"m-1 ms-3"}>
+                <div className={"m-1 ms-4"}>
                     <img className={"filter-img"} src={filters} alt={"filters"}
                          onClick={() => handleToggleFilters()}/>
                 </div>

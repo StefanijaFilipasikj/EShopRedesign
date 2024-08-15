@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import './ShoppingCart.css'
-import edit from '../../images/edit.png'
-import delete_img from '../../images/delete.png'
+import './ShoppingCart.css';
 
 const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemoveProduct, productColorOptions, productImages }) => {
     const navigate = useNavigate();
@@ -89,7 +87,7 @@ const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemo
                                                 <h6 className={"d-inline"}>Quantity: <strong>{p.quantity}</strong></h6>
                                             </div>
                                         </div>
-                                        <div className={"col mt-2 align-self-center"}>
+                                        <div className={"col-3 mt-2 align-self-center"}>
                                             <form onSubmit={(e) => onFormSubmit(e, p.id)}>
                                                 <input type="hidden" name="productId" value={p.product.id}/>
                                                 <div className="form-group d-flex mb-2">

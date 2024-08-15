@@ -6,11 +6,14 @@ import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Login from "../Auth/Login/Login";
+import Register from "../Auth/Register/Register";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            roles: [],
             products: [],
             productColorOptions: [],
             productImages: [],
@@ -40,10 +43,12 @@ class App extends Component {
                         <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
                         <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
                         <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
+                        <Route path={"/login"} element={<Login/>}/>
+                        <Route path='/register' element={<Register roles={this.state.roles}/>}/>
                         <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
                     </Routes>
-                    <Footer/>
                 </div>
+                <Footer/>
             </Router>
         )
     }
@@ -95,6 +100,18 @@ class App extends Component {
             });
     }
 
+    loadRoles = () => {
+        EShopService.getAllRoles()
+            .then((data) => {
+                this.setState({
+                    roles: data.data
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
     getProduct = (id) => {
         if (this.state.dataLoaded) {
             EShopService.getProduct(id)
@@ -126,8 +143,8 @@ class App extends Component {
     }
 
     addToCart = (productId, colorOptionId, quantity, size, navigate) => {
-        // default for now
-        let username = "user";
+        let username = localStorage.getItem("username");
+
         EShopService.addProductToShoppingCart(username, productId, colorOptionId, quantity, size)
             .then((data) => {
                 this.loadData();
@@ -139,8 +156,8 @@ class App extends Component {
     }
 
     editProductInCart = (id, productId, quantity, size, navigate) => {
-        // default for now
-        let username = "user";
+        let username = localStorage.getItem("username");
+
         EShopService.editProductInShoppingCart(id, username, productId, quantity, size)
             .then((data) => {
                 this.getShoppingCart(username);
@@ -152,8 +169,8 @@ class App extends Component {
     }
 
     removeProduct = (id, navigate) => {
-        // default for now
-        let username = "user";
+        let username = localStorage.getItem("username");
+
         EShopService.removeProductFromShoppingCart(id)
             .then((data) => {
                 this.getShoppingCart(username);
@@ -258,7 +275,7 @@ class App extends Component {
     }
 
     loadData = () => {
-        Promise.all([this.loadProducts(), this.loadProductColorOptions(), this.loadProductImages(), this.loadCategories(), this.loadColors()])
+        Promise.all([this.loadProducts(), this.loadProductColorOptions(), this.loadProductImages(), this.loadCategories(), this.loadColors(), this.loadRoles()])
             .then(() => {
                 this.setState({ dataLoaded: true });
             })

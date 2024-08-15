@@ -4,11 +4,13 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import mk.ukim.finki.nvd.backend.model.ShoppingCart;
 import mk.ukim.finki.nvd.backend.model.User;
-import mk.ukim.finki.nvd.backend.model.enumerations.Role;
+import mk.ukim.finki.nvd.backend.model.dto.UserFormDto;
 import mk.ukim.finki.nvd.backend.model.exceptions.*;
 import mk.ukim.finki.nvd.backend.repository.ShoppingCartRepository;
 import mk.ukim.finki.nvd.backend.repository.UserRepository;
 import mk.ukim.finki.nvd.backend.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,15 +39,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String username, String password, String repeatPassword, Role userRole) {
-        if (username == null || username.isEmpty() || password == null || password.isEmpty())
+    public Optional<User> register(UserFormDto dto) {
+        if (dto.getUsername() == null || dto.getUsername().isEmpty() || dto.getPassword() == null || dto.getPassword().isEmpty())
             throw new InvalidUsernameOrPasswordException();
-        if (!password.equals(repeatPassword))
+        if (!dto.getPassword().equals(dto.getRepeatPassword()))
             throw new PasswordsDoNotMatchException();
-        if (this.userRepository.findByUsername(username).isPresent())
-            throw new UsernameAlreadyExistsException(username);
+        if (this.userRepository.findByUsername(dto.getUsername()).isPresent())
+            throw new UsernameAlreadyExistsException(dto.getUsername());
         ShoppingCart sc = this.shoppingCartRepository.save(new ShoppingCart());
-        User user = new User(username, passwordEncoder.encode(password), userRole, sc);
-        return userRepository.save(user);
+        User user = new User(dto.getUsername(), passwordEncoder.encode(dto.getPassword()), dto.getRole(), sc);
+        return Optional.of(userRepository.save(user));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }

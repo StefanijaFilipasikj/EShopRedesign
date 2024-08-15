@@ -15,7 +15,7 @@
 }
 
 .price{
-    color: #875757;
+    color: #b05369;
     font-weight: bold;
     font-size: x-large;
 }
@@ -32,8 +32,20 @@
     border-radius: 0;
 }
 
+.details-container{
+    height: 50px;
+}
+
+.details-container img{
+    height: 45px;
+    width: 45px;
+    margin-left: -1px !important;
+    margin-top: -2px !important;
+}
+
 .details{
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .details-logo{
@@ -54,8 +66,7 @@
     padding: 10px;
     margin-top: 10px;
     max-height: none;
-    background-color: #ffffff;
-    border-top: 1px solid #CCC;
+    border-top: 1px solid #e8e8e8;
 }
 
 .color-options {

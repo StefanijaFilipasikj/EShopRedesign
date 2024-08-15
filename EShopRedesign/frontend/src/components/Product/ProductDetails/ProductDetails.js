@@ -150,8 +150,8 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                 {!product.descriptionDetails || product.descriptionDetails === "/" ? null : (
                     <div className={"m-3"}>
                         <div className="details" onClick={() => toggleExpand('product_details')}>
-                            <h5>
-                                <img className={"details-logo m-2"} src={tshirt} alt={"details"}/>
+                            <h5 className={"details-container p-2"}>
+                                <img className={"details-logo m-2 mb-0"} src={tshirt} alt={"details"}/>
                                 Product Details
                             </h5>
                             <div className={`content ${expandedSections.product_details ? 'expanded' : ''}`}>
@@ -163,8 +163,8 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                 {!product.washingInstructions || product.washingInstructions === "/" ? null : (
                     <div className={"m-3"}>
                         <div className="details" onClick={() => toggleExpand('washing_instructions')}>
-                            <h5>
-                                <img className={"details-logo m-2"} src={washing_machine} alt={"instructions"}/>
+                            <h5 className={"details-container p-2"}>
+                                <img className={"details-logo m-2 mb-0"} src={washing_machine} alt={"instructions"}/>
                                 Washing Instructions
                             </h5>
                             <div className={`content ${expandedSections.washing_instructions ? 'expanded' : ''}`}>
