@@ -1,0 +1,72 @@
+.hero-section {
+    background: url('https://www.neretravel.com.au/cdn/shop/collections/Collection_page_banner_1920x800_OCo_7_e61758ce-3f7c-4b73-a710-1e2749e9f251.jpg?v=1721965075') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-section .hero-text{
+    margin-bottom: 20%;
+}
+
+.hero-section .hero-text h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+.hero-section .hero-text p {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hero-section:hover .hero-text h1,
+.hero-section:hover .hero-text p {
+    transform: scale(1.05);
+}
+
+/* Photo Grid */
+.photo-grid {
+    padding: 2rem 0;
+}
+
+.photo-grid .row {
+    margin-bottom: 1rem;
+}
+
+.photo-grid .in-row-1 img{
+    width: 100%;
+}
+
+.photo-grid .in-row-2 img{
+    width: 1100px;
+    height: 600px;
+}
+
+.photo-grid .in-row-3 img {
+    width: 600px;
+    height: 850px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.photo-grid .in-row-6 img {
+    width: 300px;
+    height: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.photo-grid img:hover {
+    transform: scale(1.05);
+}
+
+.carousel-inner img{
+    width: 100%;
+    height: 1100px;
+}

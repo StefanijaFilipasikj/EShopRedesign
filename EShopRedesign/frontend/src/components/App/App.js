@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Login from "../Auth/Login/Login";
 import Register from "../Auth/Register/Register";
+import Home from "../Home/Home";
 
 class App extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class App extends Component {
                         <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
                         <Route path={"/login"} element={<Login/>}/>
                         <Route path='/register' element={<Register roles={this.state.roles}/>}/>
-                        <Route path={'/'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
+                        <Route path={'/'} element={<Home/>}></Route>
                     </Routes>
                 </div>
                 <Footer/>
