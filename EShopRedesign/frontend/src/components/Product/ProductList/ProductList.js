@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import {Link} from "react-router-dom";
+import React, {useState, useRef, useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
 import './ProductList.css';
 import view_1 from '../../../images/view-1.png';
 import view_3 from '../../../images/view-3.png';
@@ -77,6 +77,18 @@ const Products = (props) => {
         }
     }
 
+    const { person, category } = useParams();
+
+    useEffect(() => {
+        if (person) {
+            if (category) {
+                props.onFilter(person.toUpperCase(), category.toUpperCase());
+            } else {
+                props.onFilter(person.toUpperCase(), '/');
+            }
+        }
+    }, [person, category]);
+
     return (
         <div className={"row card-container m-2"}>
             <div className={"d-flex justify-content-between fixed-custom pe-4"}>
@@ -132,7 +144,7 @@ const Products = (props) => {
             <div className="col mt-5">
                 <div className="row mx-4">
                     {props.products.length === 0 ?
-                        <h2 className={"col px-4 text-center"}>no products matched your search</h2> :
+                        <h2 className={"col px-4 text-center"}>No products matched your search</h2> :
                         props.products.map((p) => {
                             const colorOption = props.productColorOptions.find(option => option.product.id === p.id);
                             const optionImages = props.productImages.filter(image => image.colorOption.id === colorOption.id);
@@ -165,8 +177,8 @@ const Products = (props) => {
                                         </div>
                                     </Link>
                                 </div>
-                        );
-                    })}
+                            );
+                        })}
                 </div>
             </div>
         </div>

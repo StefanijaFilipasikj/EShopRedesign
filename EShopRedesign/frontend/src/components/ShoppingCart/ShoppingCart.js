@@ -63,63 +63,71 @@ const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemo
     return (
         <div className={"row m-4 p-1"}>
             <div className={"col-8"}>
-                {shoppingCart.products?.map((p, index) => {
-                    const colorOption = productColorOptions.find(c => c.color.id == p.colorOption.colorId && c.product.id == p.product.id);
-                    const imageUrl = productImages.find(img => img.colorOption.id == colorOption.id)?.imageUrl;
+                {shoppingCart.products?.length == 0 ?(
+                    <div className="empty-cart text-center mt-5">
+                        <h3>Your cart is empty</h3>
+                        <p>Add some items to your cart to see them here.</p>
+                    </div>
+                ) : (
+                    shoppingCart.products?.map((p, index) => {
+                        const colorOption = productColorOptions.find(c => c.color.id == p.colorOption.colorId && c.product.id == p.product.id);
+                        const imageUrl = productImages.find(img => img.colorOption.id == colorOption.id)?.imageUrl;
 
-                    return(
-                        <div className={"cards me-5 position-relative"} ref={i => cartRefs.current[index] = i}>
-                            <button className={"btn-close-absolute"} type="button" onClick={() => onRemoveProduct(p.id, navigate)}>&#10005;</button>
-                            <div className={"row d-flex align-items-center"}>
-                                <div className={"col-4"}>
-                                    <img className={"cart-img"} src={imageUrl} alt={"Product img"}/>
-                                </div>
-                                <div className={"col-8"}>
-                                    <div className={"row"}>
-                                        <div className={"col-6 mt-2 me-3 align-self-center"}>
-                                            <div>
-                                                <h5>{p.product.title}</h5>
-                                                <p className={"code"}>{p.colorOption.code}</p>
-                                            </div>
-                                            <div className={"mt-4"}>
-                                                <h6 className={"d-inline"}>Color: <strong>{colorOption.color.color}</strong></h6>,&nbsp;
-                                                <h6 className={"d-inline"}>Size: <strong>{p.size}</strong></h6>,&nbsp;
-                                                <h6 className={"d-inline"}>Quantity: <strong>{p.quantity}</strong></h6>
-                                            </div>
-                                        </div>
-                                        <div className={"col-3 mt-2 align-self-center"}>
-                                            <form onSubmit={(e) => onFormSubmit(e, p.id)}>
-                                                <input type="hidden" name="productId" value={p.product.id}/>
-                                                <div className="form-group d-flex mb-2">
-                                                    <label htmlFor={"quantity"} className={"form-label me-3 align-self-center col-3"}>Quantity: </label>
-                                                    <input className={"form-control"} type="number" min={1} name="quantity" id={"quantity"} value={formData[p.id]?.quantity || ''} onChange={(e) => handleChange(e, p.id)}/>
+                        return(
+                            <div className={"cards me-5 position-relative"} ref={i => cartRefs.current[index] = i}>
+                                <button className={"btn-close-absolute"} type="button" onClick={() => onRemoveProduct(p.id, navigate)}>&#10005;</button>
+                                <div className={"row d-flex align-items-center"}>
+                                    <div className={"col-4"}>
+                                        <img className={"cart-img"} src={imageUrl} alt={"Product img"}/>
+                                    </div>
+                                    <div className={"col-8"}>
+                                        <div className={"row"}>
+                                            <div className={"col-5 mt-2 me-3 align-self-center"}>
+                                                <div>
+                                                    <h5>{p.product.title}</h5>
+                                                    <p className={"code"}>{p.colorOption.code}</p>
                                                 </div>
-                                                <div className="form-group d-flex mb-2">
-                                                    <label htmlFor={"size"} className={"form-label me-3 align-self-center col-3"}>Size: </label>
-                                                    <select className={"form-control"} name="size" id={"size"} value={formData[p.id]?.size || ''} onChange={(e) => handleChange(e, p.id)}>
-                                                        <option value="XXS">XXS</option>
-                                                        <option value="XS">XS</option>
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
-                                                    </select>
+                                                <div className={"mt-4"}>
+                                                    <h6 className={"d-inline"}>Color: <strong>{colorOption.color.color}</strong></h6>,&nbsp;
+                                                    <h6 className={"d-inline"}>Size: <strong>{p.size}</strong></h6>,&nbsp;
+                                                    <h6 className={"d-inline"}>Quantity: <strong>{p.quantity}</strong></h6>
                                                 </div>
-                                            </form>
-                                            <button type={"submit"} className={"btn btn-dark"}
-                                                    onClick={(e) => onFormSubmit(e, p.id)}><span
-                                                className={"fa fa-edit"}></span> Edit Item
-                                            </button>
-                                        </div>
-                                        <div className={"col mt-2 text-center align-self-center"}>
-                                            <p className={"price"}>{p.quantity * (p.product.discountPrice != 0.0 ? p.product.discountPrice : p.product.fullPrice)}€</p>
+                                            </div>
+                                            <div className={"col-4 mt-2 align-self-center"}>
+                                                <form onSubmit={(e) => onFormSubmit(e, p.id)}>
+                                                    <input type="hidden" name="productId" value={p.product.id}/>
+                                                    <div className="form-group d-flex mb-2">
+                                                        <label htmlFor={"quantity"} className={"form-label align-self-center"}>Quantity: </label>
+                                                        <input className={"form-control"} type="number" min={1} name="quantity" id={"quantity"} value={formData[p.id]?.quantity || ''} onChange={(e) => handleChange(e, p.id)}/>
+                                                    </div>
+                                                    <div className="form-group d-flex mb-2">
+                                                        <label htmlFor={"size"} className={"form-label me-3 align-self-center"}>Size: </label>
+                                                        <select className={"form-control"} name="size" id={"size"} value={formData[p.id]?.size || ''} onChange={(e) => handleChange(e, p.id)}>
+                                                            <option value="XXS">XXS</option>
+                                                            <option value="XS">XS</option>
+                                                            <option value="S">S</option>
+                                                            <option value="M">M</option>
+                                                            <option value="L">L</option>
+                                                            <option value="XL">XL</option>
+                                                            <option value="XXL">XXL</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                                <button type={"submit"} className={"btn btn-dark"}
+                                                        onClick={(e) => onFormSubmit(e, p.id)}><span
+                                                    className={"fa fa-edit"}></span> Edit Item
+                                                </button>
+                                            </div>
+                                            <div className={"col mt-2 text-center align-self-center"}>
+                                                <p className={"price"}>{p.quantity * (p.product.discountPrice != 0.0 ? p.product.discountPrice : p.product.fullPrice)}€</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )})}
+                        );
+                    })
+                )}
             </div>
             <div className={"col-4 order-summary mx-4 p-3"}>
                 <h3 className={"m-2"}><strong>Order Summary</strong></h3>

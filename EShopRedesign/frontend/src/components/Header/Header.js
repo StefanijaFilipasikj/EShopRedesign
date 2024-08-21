@@ -18,11 +18,14 @@ const Header = (props) =>{
         })
     }, []);
 
-    const onFormSubmit = (e, person, clothing) => {
+    const onNavigateToCategory = (e, person, clothing) => {
         e.preventDefault();
-        console.log(person, clothing)
-        props.onFilter(person, clothing);
-    }
+        if (clothing === '/') {
+            navigate(`/products/${person.toLowerCase()}`);
+        } else {
+            navigate(`/products/${person.toLowerCase()}/${clothing.toLowerCase()}`);
+        }
+    };
 
     useLayoutEffect(() => {
         const header = document.querySelector('header');
@@ -40,7 +43,7 @@ const Header = (props) =>{
                 <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${username}`}><span className={"fa fa-shopping-cart"}></span></a>
                 <button className="nav-link ps-3 fs-4 text-white" onClick={() => {localStorage.removeItem("JWT"); navigate("/login");}}><span className={"fa fa-user-times"}></span></button>
             </>
-            )
+        )
     } else {
         authenticate = (<Link className="nav-link ps-3 fs-4 text-white" to={"/login"}><span className={"fa fa-user"}></span></Link>)
     }
@@ -57,7 +60,7 @@ const Header = (props) =>{
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="col-4 navbar-nav me-auto mb-2 mb-lg-0 text-white">
                             <li className="nav-item dropdown nav-items d-flex">
-                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'WOMEN', '/')}>
+                                <form className={"d-inline"} onSubmit={(event) => onNavigateToCategory(event, 'WOMEN', '/')}>
                                     <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>WOMEN</button>
                                 </form>
                                 <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -65,7 +68,7 @@ const Header = (props) =>{
                                     {props.women.map((c) => {
                                         return(
                                             <li className="dropdown-item" key={c}>
-                                                <form onSubmit={(event) => onFormSubmit(event, 'WOMEN', c)}>
+                                                <form onSubmit={(event) => onNavigateToCategory(event, 'WOMEN', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
                                             </li>
@@ -74,7 +77,7 @@ const Header = (props) =>{
                                 </ul>
                             </li>
                             <li className="nav-item dropdown nav-items d-flex">
-                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'MEN', '/')}>
+                                <form className={"d-inline"} onSubmit={(event) => onNavigateToCategory(event, 'MEN', '/')}>
                                     <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>MEN</button>
                                 </form>
                                 <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -82,7 +85,7 @@ const Header = (props) =>{
                                     {props.men.map((c) => {
                                         return(
                                             <li className="dropdown-item" key={c}>
-                                                <form onSubmit={(event) => onFormSubmit(event, 'MEN', c)}>
+                                                <form onSubmit={(event) => onNavigateToCategory(event, 'MEN', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
                                             </li>
@@ -91,7 +94,7 @@ const Header = (props) =>{
                                 </ul>
                             </li>
                             <li className="nav-item dropdown nav-items d-flex">
-                                <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'GIRLS', '/')}>
+                                <form className={"d-inline"} onSubmit={(event) => onNavigateToCategory(event, 'GIRLS', '/')}>
                                     <button className={"h-link nav-link btn-unstyled mt-1 text-white"} type={"submit"}>GIRLS</button>
                                 </form>
                                 <a className="d-inline nav-link dropdown-toggle me-3 mt-1 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -99,7 +102,7 @@ const Header = (props) =>{
                                     {props.girls.map((c) => {
                                         return(
                                             <li className="dropdown-item" key={c}>
-                                                <form onSubmit={(event) => onFormSubmit(event, 'GIRLS', c)}>
+                                                <form onSubmit={(event) => onNavigateToCategory(event, 'GIRLS', c)}>
                                                     <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>
                                                 </form>
                                             </li>
@@ -107,24 +110,6 @@ const Header = (props) =>{
                                     })}
                                 </ul>
                             </li>
-                            {/*<li className="nav-item dropdown nav-items d-flex">*/}
-                            {/*    <form className={"d-inline"} onSubmit={(event) => onFormSubmit(event, 'BOYS', '/')}>*/}
-                            {/*        <button className={"h-link nav-link btn-unstyled mt-1"} type={"submit"}>BOYS</button>*/}
-                            {/*    </form>*/}
-                            {/*    <a className="d-inline nav-link dropdown-toggle me-3 mt-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>*/}
-                            {/*    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">*/}
-                            {/*        {props.boys.map((c) => {*/}
-                            {/*            return(*/}
-                            {/*                <li className="dropdown-item" key={c}>*/}
-                            {/*                    <form onSubmit={(event) => onFormSubmit(event, 'BOYS', c)}>*/}
-                            {/*                        <button className={"nav-link btn-unstyled"} type={"submit"}>{c}</button>*/}
-                            {/*                    </form>*/}
-                            {/*                </li>*/}
-                            {/*            )*/}
-                            {/*        })}*/}
-                            {/*    </ul>*/}
-                            {/*</li>*/}
-
                         </ul>
                         <a className="col-4 text-center navbar-brand" href="/"><span className={"text-white title"}>LC WAIKIKI</span></a>
                         <form className="d-flex p-3 mx-3 w-100 justify-content-end">
