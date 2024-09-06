@@ -1,22 +1,12 @@
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, { useLayoutEffect, useState} from "react";
 import './Header.css';
 import {Link, useNavigate} from "react-router-dom";
-import EShopService from "../../repository/EShopRepository";
 
-//hard coded for now
-const username = 'user';
 
 const Header = (props) =>{
 
     const navigate = useNavigate();
-
-    const [username, setUsername] = useState(null);
-
-    useEffect(() => {
-        EShopService.getUserUsername().then(resp => {
-            setUsername(resp.data)
-        })
-    }, []);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const onNavigateToCategory = (e, person, clothing) => {
         e.preventDefault();
@@ -35,12 +25,25 @@ const Header = (props) =>{
         }
     }, []);
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+        console.log(event.target.value)
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        props.searchProducts(searchTerm.trim())
+        setSearchTerm("");
+        navigate('/products');
+    };
+
+
     let authenticate;
     if(localStorage.getItem("JWT")){
         authenticate = (
             <>
-                <span id={"username"} className={"nav-link fs-6 text-white align-self-center text-truncate"}>{username}</span>
-                <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${username}`}><span className={"fa fa-shopping-cart"}></span></a>
+                <span id={"username"} className={"nav-link fs-6 text-white align-self-center text-truncate"}>{props.username}</span>
+                <a className={"nav-link px-3 fs-4 text-white"} href={`/shopping-cart/${props.username}`}><span className={"fa fa-shopping-cart"}></span></a>
                 <button className="nav-link ps-3 fs-4 text-white" onClick={() => {localStorage.removeItem("JWT"); navigate("/login");}}><span className={"fa fa-user-times"}></span></button>
             </>
         )
@@ -112,10 +115,17 @@ const Header = (props) =>{
                             </li>
                         </ul>
                         <a className="col-4 text-center navbar-brand" href="/"><span className={"text-white title"}>LC WAIKIKI</span></a>
-                        <form className="d-flex p-3 mx-3 w-100 justify-content-end">
-                            <input className="form-control w-75 rounded-0" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn-search bg-transparent" type="submit"><span className={"fa fa-search"}></span></button>
+                        <form className="d-flex me-3 w-100 justify-content-end" onSubmit={handleSearchSubmit}>
+                            <input
+                                className="form-control search-bar rounded-0"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                            />
                         </form>
+
                         <div className={"d-flex"}>
                             {authenticate}
                         </div>

@@ -10,4 +10,5 @@ public interface ShoppingCartService {
     Optional<ShoppingCartDto> addProductToShoppingCart(ProductToCartDto dto);
     Optional<ShoppingCartDto> editProductInShoppingCart(Integer id, ProductToCartDto dto);
     Optional<ShoppingCartDto> removeProductFromCart(Integer id);
+    void clearShoppingCart(String username);
 }

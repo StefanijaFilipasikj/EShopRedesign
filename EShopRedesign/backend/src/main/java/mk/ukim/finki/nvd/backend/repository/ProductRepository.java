@@ -21,5 +21,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByClothingCategory(ClothingCategory c);
     List<Product> findByPersonCategoryAndClothingCategory(PersonCategory p, ClothingCategory c);
     List<Product> findByPersonCategoryAndClothingCategoryAndDetails_LengthAndDetails_SleevesAndDetails_NecklineAndDetails_WaistAndDetails_Fit(PersonCategory p, ClothingCategory c, @Nullable Length l, @Nullable Sleeves s, @Nullable Neckline n, @Nullable Waist w, @Nullable Fit f);
-
+    List<Product> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
 }

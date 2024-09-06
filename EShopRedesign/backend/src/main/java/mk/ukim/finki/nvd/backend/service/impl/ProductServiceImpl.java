@@ -140,4 +140,9 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.findByPersonCategoryAndClothingCategoryAndDetails_LengthAndDetails_SleevesAndDetails_NecklineAndDetails_WaistAndDetails_Fit(pc, cc, l, s, n, w, f);
     }
+
+    @Override
+    public List<Product> searchProducts(String title, String description) {
+        return productRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(title, description);
+    }
 }

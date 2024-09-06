@@ -29,7 +29,8 @@ class App extends Component {
             categoriesBoys: [],
             selectedPerson: {},
             selectedClothing: {},
-            dataLoaded: false
+            dataLoaded: false,
+            username: null,
         }
     }
     render() {
@@ -39,14 +40,14 @@ class App extends Component {
         return (
             <Router>
                 <div className={"min-vh-100 d-flex flex-column justify-content-between"}>
-                    <Header women={this.state.categoriesWomen} men={this.state.categoriesMen} girls={this.state.categoriesGirls} boys={this.state.categoriesBoys} onFilter={this.filterProductsByPersonAndClothingCategory}/>
+                    <Header username={this.state.username} women={this.state.categoriesWomen} men={this.state.categoriesMen} girls={this.state.categoriesGirls} boys={this.state.categoriesBoys} onFilter={this.filterProductsByPersonAndClothingCategory} searchProducts={this.searchProducts}/>
                     <Routes>
-                        <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
-                        <Route path={'/products/:person'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilter={this.filterProductsByPersonAndClothingCategory} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
-                        <Route path={'/products/:person/:category'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilter={this.filterProductsByPersonAndClothingCategory} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.loadProducts}/>}></Route>
+                        <Route path={'/products'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.clearFilters}/>}></Route>
+                        <Route path={'/products/:person'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilter={this.filterProductsByPersonAndClothingCategory} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.clearFilters}/>}></Route>
+                        <Route path={'/products/:person/:category'} element={<Products products={this.state.products} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} colors={this.state.colors} onDetails={this.getProduct} onFilter={this.filterProductsByPersonAndClothingCategory} onFilterPrice={this.filterPrice} onFilterColors={this.filterColors} onFilterCustom={this.filterCustom} clearFilters={this.clearFilters}/>}></Route>
                         <Route path={'/product/:id'} element={<ProductDetails product={this.state.selectedProduct} colorOptions={this.state.selectedProductColorOptions} images={this.state.selectedProductImages} getProduct={this.getProduct} onAddToCart={this.addToCart}/>}></Route>
-                        <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct}/>}></Route>
-                        <Route path={"/login"} element={<Login/>}/>
+                        <Route path={'/shopping-cart/:username'} element={<ShoppingCart shoppingCart={this.state.selectedShoppingCart} productColorOptions={this.state.productColorOptions} productImages={this.state.productImages} getShoppingCart={this.getShoppingCart} editProductInCart={this.editProductInCart} onRemoveProduct={this.removeProduct} clearShoppingCart={this.clearShoppingCart}/>}></Route>
+                        <Route path={"/login"} element={<Login refreshUsername={this.loadUsername}/>}/>
                         <Route path='/register' element={<Register roles={this.state.roles}/>}/>
                         <Route path={'/'} element={<Home/>}></Route>
                     </Routes>
@@ -66,6 +67,29 @@ class App extends Component {
                 console.log(error)
             });
     }
+
+    loadUsername = () => {
+        EShopService.getUserUsername()
+            .then(resp => {
+                this.setState({
+                    username: resp.data
+                });
+            }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    searchProducts = (term) => {
+        EShopService.searchProducts(term)
+            .then((data) => {
+                this.setState({
+                    products: data.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     loadProductColorOptions = () => {
         EShopService.getAllProductColorOptions()
@@ -145,13 +169,22 @@ class App extends Component {
             });
     }
 
-    addToCart = (productId, colorOptionId, quantity, size, navigate) => {
-        let username = localStorage.getItem("username");
+    clearShoppingCart = (username) => {
+        EShopService.clearShoppingCart(username)
+            .then(() => {
+                this.getShoppingCart(username);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
-        EShopService.addProductToShoppingCart(username, productId, colorOptionId, quantity, size)
+
+    addToCart = (productId, colorOptionId, quantity, size, navigate) => {
+        EShopService.addProductToShoppingCart(this.state.username, productId, colorOptionId, quantity, size)
             .then((data) => {
                 this.loadData();
-                navigate(`/shopping-cart/${username}`);
+                navigate(`/shopping-cart/${this.state.username}`);
             })
             .catch((error) => {
                 console.log(error)
@@ -159,12 +192,10 @@ class App extends Component {
     }
 
     editProductInCart = (id, productId, quantity, size, navigate) => {
-        let username = localStorage.getItem("username");
-
-        EShopService.editProductInShoppingCart(id, username, productId, quantity, size)
+        EShopService.editProductInShoppingCart(id, this.state.username, productId, quantity, size)
             .then((data) => {
-                this.getShoppingCart(username);
-                navigate(`/shopping-cart/${username}`);
+                this.getShoppingCart(this.state.username);
+                navigate(`/shopping-cart/${this.state.username}`);
             })
             .catch((error) => {
                 console.log(error)
@@ -172,12 +203,10 @@ class App extends Component {
     }
 
     removeProduct = (id, navigate) => {
-        let username = localStorage.getItem("username");
-
         EShopService.removeProductFromShoppingCart(id)
             .then((data) => {
-                this.getShoppingCart(username);
-                navigate(`/shopping-cart/${username}`);
+                this.getShoppingCart(this.state.username);
+                navigate(`/shopping-cart/${this.state.username}`);
             })
             .catch((error) => {
                 console.log(error)
@@ -277,8 +306,47 @@ class App extends Component {
             });
     }
 
+    clearFilters = () => {
+        const currentPath = window.location.pathname;
+
+        if (currentPath.includes('/women')) {
+            EShopService.filterProductsByPersonCategory('WOMEN')
+                .then((data) => {
+                    this.setState({ products: data.data });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else if (currentPath.includes('/men')) {
+            EShopService.filterProductsByPersonCategory('MEN')
+                .then((data) => {
+                    this.setState({ products: data.data });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else if (currentPath.includes('/girls')) {
+            EShopService.filterProductsByPersonCategory('GIRLS')
+                .then((data) => {
+                    this.setState({ products: data.data });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            EShopService.getAllProducts()
+                .then((data) => {
+                    this.setState({ products: data.data });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }
+
+
     loadData = () => {
-        Promise.all([this.loadProducts(), this.loadProductColorOptions(), this.loadProductImages(), this.loadCategories(), this.loadColors(), this.loadRoles()])
+        Promise.all([this.loadProducts(), this.loadProductColorOptions(), this.loadProductImages(), this.loadCategories(), this.loadColors(), this.loadRoles(), this.loadUsername()])
             .then(() => {
                 this.setState({ dataLoaded: true });
             })

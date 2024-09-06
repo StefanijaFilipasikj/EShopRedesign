@@ -42,4 +42,14 @@ public class ShoppingCartRestController {
                 .map(cart -> ResponseEntity.ok().body(cart))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
+
+    @DeleteMapping("/clear/{username}")
+    public ResponseEntity<Void> clearShoppingCart(@PathVariable String username) {
+        try {
+            shoppingCartService.clearShoppingCart(username);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

@@ -6,10 +6,9 @@ import mk.ukim.finki.nvd.backend.model.ProductColorOption;
 import mk.ukim.finki.nvd.backend.model.ProductInShoppingCart;
 import mk.ukim.finki.nvd.backend.model.ShoppingCart;
 import mk.ukim.finki.nvd.backend.model.dto.*;
-import mk.ukim.finki.nvd.backend.model.exceptions.ProductColorOptionNotFoundException;
-import mk.ukim.finki.nvd.backend.model.exceptions.ProductInShoppingCartNotFoundException;
-import mk.ukim.finki.nvd.backend.model.exceptions.ProductNotFoundException;
+import mk.ukim.finki.nvd.backend.model.exceptions.*;
 import mk.ukim.finki.nvd.backend.repository.ProductInShoppingCartRepository;
+import mk.ukim.finki.nvd.backend.repository.ShoppingCartRepository;
 import mk.ukim.finki.nvd.backend.service.ProductColorOptionService;
 import mk.ukim.finki.nvd.backend.service.ProductService;
 import mk.ukim.finki.nvd.backend.service.ShoppingCartService;
@@ -28,6 +27,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ProductColorOptionService productColorOptionService;
     private final ProductService productService;
     private final UserService userService;
+    private final ShoppingCartRepository shoppingCartRepository;
 
     // Dto is used to avoid loops
     // getShoppingCartDto method is defined bellow
@@ -40,16 +40,23 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Optional<ShoppingCartDto> addProductToShoppingCart(ProductToCartDto dto) {
         ShoppingCart shoppingCart = userService.findByUsername(dto.getUsername()).getShoppingCart();
         Product product = productService.findById(dto.getProductId()).orElseThrow(() -> new ProductNotFoundException(dto.getProductId()));
-        List<ProductInShoppingCart> withSameProduct = shoppingCart.getProducts().stream().filter(p -> p.getProduct().getId().equals(dto.getProductId())).toList();
         ProductColorOption productColorOption = productColorOptionService.findById(dto.getColorOptionId()).orElseThrow(() -> new ProductColorOptionNotFoundException(dto.getColorOptionId()));
 
-        if(withSameProduct.isEmpty()){
+        List<ProductInShoppingCart> withSameProductAndColor = shoppingCart.getProducts().stream()
+                .filter(p -> p.getProduct().getId().equals(dto.getProductId()) &&
+                        p.getColorOption().getId().equals(dto.getColorOptionId()))
+                .toList();
+
+        if(withSameProductAndColor.isEmpty()) {
             productInShoppingCartRepository.save(new ProductInShoppingCart(product, productColorOption, shoppingCart, dto.getQuantity(), dto.getSize()));
-        }else{
-            List<ProductInShoppingCart> withSameSize = withSameProduct.stream().filter(p -> p.getSize().equals(dto.getSize())).toList();
-            if(withSameSize.isEmpty()){
+        } else {
+            List<ProductInShoppingCart> withSameSize = withSameProductAndColor.stream()
+                    .filter(p -> p.getSize().equals(dto.getSize()))
+                    .toList();
+
+            if(withSameSize.isEmpty()) {
                 productInShoppingCartRepository.save(new ProductInShoppingCart(product, productColorOption, shoppingCart, dto.getQuantity(), dto.getSize()));
-            }else{
+            } else {
                 ProductInShoppingCart productInCart = withSameSize.get(0);
                 productInCart.setQuantity(productInCart.getQuantity() + dto.getQuantity());
                 productInShoppingCartRepository.save(productInCart);
@@ -82,6 +89,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ProductInShoppingCart productInCart = productInShoppingCartRepository.findById(id).get();
         productInShoppingCartRepository.delete(productInCart);
         return this.getShoppingCartDto(productInCart.getShoppingCart());
+    }
+
+    @Override
+    public void clearShoppingCart(String username) {
+        ShoppingCartDto dto = getShoppingCartByUsername(username).orElseThrow(() -> new ShoppingCartNotFoundException(username));
+        ShoppingCart cart = shoppingCartRepository.findById(dto.getId()).orElseThrow(() -> new ShoppingCartByIdNotFoundException(dto.getId()));
+        productInShoppingCartRepository.deleteAll(cart.getProducts());
+        cart.getProducts().clear();
+        shoppingCartRepository.save(cart);
     }
 
     private Optional<ShoppingCartDto> getShoppingCartDto(ShoppingCart shoppingCart) {

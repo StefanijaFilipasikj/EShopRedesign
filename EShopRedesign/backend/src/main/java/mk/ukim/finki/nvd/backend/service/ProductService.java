@@ -24,4 +24,5 @@ public interface ProductService {
     List<Product> filterByPrice(String person, String clothing, PriceFilterDto dto);
     List<Product> filterByColor(String person, String clothing, ColorFilterDto dto);
     List<Product> filterByCustom(String person, String clothing, CustomFilterDto dto);
+    List<Product> searchProducts(String title, String description);
 }

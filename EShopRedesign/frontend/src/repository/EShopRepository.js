@@ -91,5 +91,14 @@ const EShopService = {
             "fit": fit,
         });
     },
+    searchProducts: (query) =>{
+        return axios.get(`/products/search`, {
+            params: { query }
+        });
+    },
+    clearShoppingCart: (cartId) => {
+        return axios.delete(`/shopping-cart/clear/${cartId}`);
+    },
+
 }
 export default EShopService;

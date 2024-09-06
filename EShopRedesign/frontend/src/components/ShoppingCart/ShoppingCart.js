@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './ShoppingCart.css';
 
-const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemoveProduct, productColorOptions, productImages }) => {
+const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemoveProduct, productColorOptions, productImages, clearShoppingCart }) => {
     const navigate = useNavigate();
     const { username } = useParams();
 
@@ -46,19 +46,22 @@ const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemo
     let total = shoppingCart.products?.map((p) => p.quantity * (p.product.discountPrice != 0.0 ? p.product.discountPrice : p.product.fullPrice)).reduce((sum, price) => sum + price, 0) || 0.0;
     let count = shoppingCart.products?.map(p => p.quantity).reduce((sum, quantity) => sum + quantity, 0);
 
-    //for box-shadow to be on top of image
     const cartRefs = useRef([]);
     useEffect(() => {
         cartRefs.current.forEach((cards, index) => {
             if (cards) {
-                cards.style.zIndex = 1000 - index; // Adjust z-index dynamically
+                cards.style.zIndex = 1000 - index;
                 const img = cards.querySelector('.cart-img');
                 if (img) {
-                    img.style.zIndex = 1000 - index - 1; // Ensure image z-index is always less
+                    img.style.zIndex = 1000 - index - 1;
                 }
             }
         });
     }, [shoppingCart.products]);
+
+    const handleClearCart = () => {
+        clearShoppingCart(username);
+    }
 
     return (
         <div className={"row m-4 p-1"}>
@@ -119,8 +122,11 @@ const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemo
                                                 </button>
                                             </div>
                                             <div className={"col mt-2 text-center align-self-center"}>
-                                                <p className={"price"}>{p.quantity * (p.product.discountPrice != 0.0 ? p.product.discountPrice : p.product.fullPrice)}€</p>
+                                                <p className={"price"}>
+                                                    {(p.quantity * (p.product.discountPrice !== 0.0 ? p.product.discountPrice : p.product.fullPrice)).toFixed(2)}€
+                                                </p>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +140,7 @@ const ShoppingCart = ({ getShoppingCart, shoppingCart, editProductInCart, onRemo
                 <hr/>
                 <h5>Item count: {count}</h5>
                 <h5>Total price: {total.toFixed(2)}€</h5>
-                <a className={"btn btn-dark mt-2"} href={"#"}>Pay</a>
+                <a className={"btn btn-dark mt-2"} href={"#"} onClick={handleClearCart}>Pay</a>
             </div>
         </div>
     );

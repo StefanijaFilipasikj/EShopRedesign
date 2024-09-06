@@ -23,15 +23,9 @@ const Login = (props) => {
         e.preventDefault();
         EShopService.login(formData.username, formData.password).then(resp => {
             localStorage.setItem("JWT", resp.data);
-            setError(null)
-            EShopService.getUserUsername().then(resp => {
-                localStorage.setItem("username", resp.data);
-            }).catch(error => {
-                localStorage.setItem("username", "user");
-            })
+            props.refreshUsername();
             navigate("/");
         }).catch(error => {
-            // setError(error.response.data)
             const errorMessage = error.response?.data?.message || "Invalid credentials";
             setError(errorMessage);
         });

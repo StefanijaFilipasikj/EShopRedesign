@@ -7,6 +7,8 @@ import mk.ukim.finki.nvd.backend.model.dto.CustomFilterDto;
 import mk.ukim.finki.nvd.backend.model.dto.PriceFilterDto;
 import mk.ukim.finki.nvd.backend.model.dto.ProductDto;
 import mk.ukim.finki.nvd.backend.service.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -87,5 +89,10 @@ public class ProductRestController {
     @PutMapping("/filter-custom/{person}/{clothing}")
     private List<Product> filterByCustom(@PathVariable String person, @PathVariable String clothing, @RequestBody CustomFilterDto dto) {
         return this.productService.filterByCustom(person, clothing, dto);
+    }
+
+    @GetMapping("/search")
+    public List<Product> searchProducts(@RequestParam String query) {
+        return productService.searchProducts(query, query);
     }
 }
