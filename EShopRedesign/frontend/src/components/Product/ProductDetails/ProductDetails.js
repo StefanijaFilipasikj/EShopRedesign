@@ -127,7 +127,7 @@ const ProductDetails = ({ getProduct, product, colorOptions, images, onAddToCart
                                 ))}
                         </div>
                     </div>
-                    <form onSubmit={onFormSubmit}>
+                    <form className="sc-form" onSubmit={onFormSubmit}>
                         <div className="mb-3 form-group">
                             <label about={"quantity"} className={"form-label"}>Quantity</label>
                             <input className={"form-control"} value={formData.quantity} type="number" min={1} name="quantity" id={"quantity"} onChange={handleChange}/>

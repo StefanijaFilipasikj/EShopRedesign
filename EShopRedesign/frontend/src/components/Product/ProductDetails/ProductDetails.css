@@ -95,3 +95,7 @@
 .color-thumbnail.selected {
     border: 2px solid #000;
 }
+
+.sc-form input, .sc-form select{
+    min-width: 100% !important;
+}

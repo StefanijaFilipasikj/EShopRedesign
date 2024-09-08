@@ -29,12 +29,14 @@ const Home = (props) => {
 
             <div id="homeCarousel" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
-
-                    <div className="carousel-item">
-                        <img src="https://www.koimoi.com/wp-content/new-galleries/2023/08/blackpinks-jennie-puts-her-calvin-klein-sxy-sports-bra-on-display-serving-hotness-in-an-all-denim-look-blinks-react-001.jpg" className="d-block w-100" alt="..." />
-                    </div>
                     <div className="carousel-item active">
                         <img src="https://blog.delivered.co.kr/wp-content/uploads/2024/05/Tube-tops.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://cdn.mos.cms.futurecdn.net/MNMWrf6KDKBGcZZbbkH3HW-1200-80.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://www.koimoi.com/wp-content/new-galleries/2023/08/blackpinks-jennie-puts-her-calvin-klein-sxy-sports-bra-on-display-serving-hotness-in-an-all-denim-look-blinks-react-001.jpg" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item">
                         <img src="https://www.allkpop.com/upload/2024/01/content/091823/1704842620-untitled-1.jpg" className="d-block w-100" alt="..." />
@@ -59,20 +61,20 @@ const Home = (props) => {
                         <img src="https://www.elle.vn/wp-content/uploads/2024/08/10/602332/sabrina-carpenter-1024x576.jpg" className="img-fluid" alt="..." />
                     </div>
                 </div>
-                <div className="row d-flex justify-content-between in-row-3">
-                    <div className="col-4 text-left">
-                        <img src="https://i.pinimg.com/736x/26/a8/cf/26a8cf9a60cea62b82d2c1d344fdb4b1.jpg" alt="..." />
-                    </div>
-                    <div className="col-4 text-center">
-                        <img src="https://i.pinimg.com/736x/07/13/0f/07130f208c85da32b9a398853ba3388d.jpg" alt="..." />
-                    </div>
-                    <div className="col-4 text-end">
-                        <img src="https://i.pinimg.com/736x/6f/d8/25/6fd825d7c3cc8eb6f38177fd20826f22.jpg" alt="..." />
-                    </div>
-                </div>
+                {/*<div className="row d-flex justify-content-between in-row-3">*/}
+                {/*    <div className="col-4 text-left">*/}
+                {/*        <img src="https://i.pinimg.com/736x/26/a8/cf/26a8cf9a60cea62b82d2c1d344fdb4b1.jpg" alt="..." />*/}
+                {/*    </div>*/}
+                {/*    <div className="col-4 text-center">*/}
+                {/*        <img src="https://i.pinimg.com/736x/07/13/0f/07130f208c85da32b9a398853ba3388d.jpg" alt="..." />*/}
+                {/*    </div>*/}
+                {/*    <div className="col-4 text-end">*/}
+                {/*        <img src="https://i.pinimg.com/736x/6f/d8/25/6fd825d7c3cc8eb6f38177fd20826f22.jpg" alt="..." />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 <div className="row">
                     <div className="col-12 in-row-1">
-                        <img src="https://www.beigebrown.com/cdn/shop/articles/BB_blog_dress_cover.jpg?v=1688644387&width=2048" className="d-block w-100" alt="..." />
+                        <img src="https://stylecaster.com/wp-content/uploads/2020/08/zara-vacation.jpg?w=600&h=337&crop=1" className="d-block w-100" alt="..." />
                     </div>
                 </div>
             </div>
