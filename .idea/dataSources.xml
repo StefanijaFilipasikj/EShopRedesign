@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/eshop_redesign_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="eshop_redesign_db@localhost [2]" uuid="16bb83a4-bb2a-4c8d-8165-817d86f9c1ca">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/eshop_redesign_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
