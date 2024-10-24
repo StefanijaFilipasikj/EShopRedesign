@@ -29,7 +29,7 @@
 
 > ### Shopping Cart & Orders
 > **Add to Cart and order placement:** Users can add products to their shopping cart with the wanted size and quantity and manage them. Then they can place the order to complete the  workflow from cart to checkout.
->  ![nvd-order](https://github.com/user-attachments/assets/c229c698-8692-44d1-b473-9bd42f6612b4)
+> ![nvd-order](https://github.com/user-attachments/assets/91974d7f-1e50-4c14-a2fb-17e154b4a84c)
 
 
 > ### Filters
@@ -37,10 +37,10 @@
 > **Color Filter:** Filter products by available color options.   
 > **Category Filter:** Located in the header, users can filter products by gender and categories.   
 > **Custom Filter:** Lets the user build the piece of clothing they want (neckline, length, sleeves...) and filters the products that match the drawing.   
-> ![nvd-product-filters](https://github.com/user-attachments/assets/ab902208-72ed-494a-b0af-3fe11983ff44)
+> ![nvd-product-filters](https://github.com/user-attachments/assets/ebcc1041-e6e9-42ea-81dd-64edab6d8943)
 
 
 > ### User Authentication And Home Page
 > **Login & Register:** Provides secure authentication for users (blinking cat resource: [codepen](https://codepen.io/johanmouchet/pen/OXxvqM)).   
 > **Home Page:** Serves as the main landing area for users, offering easy navigation to key sections of the website.
-> <img src="https://github.com/user-attachments/assets/876f56f3-fe4d-46ef-b060-7ab2266fb61d" alt="nvd-login-and-home" width="100%">
+> <img src="https://github.com/user-attachments/assets/036bde93-7dbb-43c0-a744-2a2c94c3f091" alt="nvd-login-and-home" width="100%">
